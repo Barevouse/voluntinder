@@ -3,40 +3,18 @@
     ViewBag.Title = Model.PageTitle;
 }
 
-<div class="row">
-    @{ var isFirst = true; }
-    @foreach (var user in Model.Users)
-    {
-        <div style="@(isFirst ? "selected" : string.Empty)">
-            @user.Email
-            @foreach (var skill in user.Skills)
-            {
-                @skill
-            }
+@for (var index = 0; index < Model.Users.Count; index++)
+{
+    var user = Model.Users[index];
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@user.Email</h2>
+            <ul>
+                @foreach (var skill in user.Skills)
+                {
+                    <li>@skill</li>
+                }
+            </ul>
         </div>
-        
-        {
-            isFirst = false;
-        }
-    }
     </div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Match 1</h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vestibulum purus luctus, ultrices leo eget, tempus orci. Praesent vitae eros in leo sodales ornare nec id est. Donec dolor dolor, tincidunt in quam sit amet, blandit vestibulum turpis. Mauris tincidunt non sapien eget vehicula. Nunc interdum lectus magna. Aliquam in diam velit. In tristique ligula vitae metus viverra, et dignissim sem vehicula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id erat justo. Nam pulvinar tempus nulla, quis viverra arcu malesuada nec. Suspendisse egestas quam et sapien lobortis iaculis. Ut malesuada eleifend enim et malesuada.
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h2>Match 2</h2>
-        <p>
-            Nam egestas dignissim eros, ut rhoncus lacus maximus a. Etiam hendrerit sodales quam. Pellentesque non tempus diam, ac consectetur lectus. Nam faucibus eros leo, sit amet euismod ipsum gravida scelerisque. Praesent vulputate nec mi a laoreet. Praesent at lobortis magna. Vivamus finibus cursus ipsum, pharetra pulvinar massa rhoncus viverra. Aenean et dapibus lorem. Proin elit eros, rhoncus sit amet tempor sit amet, volutpat pretium sem. In eu ligula a sapien auctor consequat ut eu mauris. Pellentesque non nisi sed odio egestas malesuada eu eu nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h2>Match 3</h2>
-        <p>
-            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean interdum dictum tortor blandit cursus. Morbi ut est ornare, pharetra ex sed, hendrerit libero. Duis lacus lorem, volutpat sed fermentum sed, volutpat et magna. Maecenas sit amet nibh eget erat viverra mollis. Quisque at mi dolor. Nunc viverra erat feugiat diam vestibulum, sed mattis metus pretium. Donec semper gravida luctus. Maecenas fermentum tortor lorem, vitae viverra sapien convallis id. Nulla facilisi. Nullam vehicula rhoncus nunc, in bibendum arcu fermentum ac.
-        </p>
-    </div>
-</div>
+}

@@ -4,16 +4,20 @@
 }
 
 <h2>Skills</h2>
-
 <p>
     Here you can add skills so we can find the most suited charities for you!
 </p>
-
-@foreach (var skill in @Model.Skills)
+@using (Html.BeginForm("Save", "Skills", FormMethod.Post))
 {
-    <div class="checkbox">
-        <label>
-            <input id="skill-@skill.SkillId" type="checkbox" name="@skill.SkillName" value="@skill.SkillId" @{if (skill.HasSkill) { <text> checked="checked" </text>     } } /> @skill.SkillName
-        </label>
-    </div>
+    <fieldset>
+        @foreach (var skill in @Model.Skills)
+        {
+            <div class="checkbox">
+                <label>
+                    <input id="skill-@skill.SkillId" type="checkbox" name="selectedObjects" value="@skill.SkillId" @{if (skill.HasSkill) { <text> checked="checked" </text> }} /> @skill.SkillName
+                </label>
+            </div>
+        }
+        <input class="btn btn-primary" type="submit" value="Update" />
+    </fieldset>
 }

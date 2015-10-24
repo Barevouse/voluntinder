@@ -11,11 +11,11 @@
         </li>
         @if (!ViewContext.RouteData.Values["controller"].Equals("Skills"))
         {
-            <li>@Html.ActionLink("My Skills", "Index", "Skills")</li>
+            <li>@Html.ActionLink("Skills", "Index", "Skills")</li>
         }
         @if (!ViewContext.RouteData.Values["controller"].Equals("Match"))
         {
-            <li>@Html.ActionLink("Find Matches", "Index", "Match")</li>
+            <li>@Html.ActionLink("Find", "Index", "Match")</li>
         }
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
     </ul>
