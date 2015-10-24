@@ -25,20 +25,19 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        @{
-            var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
-            using (Html.BeginForm("ExternalLogin", "Account"))
+        <li>
+            @{
+                var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+                using (Html.BeginForm("ExternalLogin", "Account"))
                 {
                     @Html.AntiForgeryToken()
-                            foreach (AuthenticationDescription p in loginProviders)
-                            {
-                                <li>
-                                    <button type="submit" class="fakeLink" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Login</button>
-                                </li>
-                            }
-
+                    foreach (var p in loginProviders)
+                    {
+                        <button type="submit" class="fakeLink" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Log in <span class="fa fa-@p.AuthenticationType.ToLower()"></span></button>
+                    }
+                }
             }
-        }
-        
+        </li>
+
     </ul>
 }

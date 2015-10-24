@@ -64,15 +64,27 @@ textarea {
     text-shadow: 2px 2px #000000;
 }
 
-.fakeLink{
-    border: 0px;
+.fakeLink {
+    border: 0;
     background-color: transparent;
-    color: blue;
-    cursor: hand;
-    padding-top: 15px;
-} 
-.fakelink:hover{
+    color: #777777;
+    cursor: pointer;
+    padding: 10px 15px;
+    line-height: 20px;
+    margin-top: 5px;
+}
+
+.fakeLink:focus {
+    outline: 0;
+}
+
+.fakelink:hover, .fakeLink:focus {
     text-decoration: underline;
+    color: #333333;
+}
+
+.fakeLink .fa-twitter:before {
+    color: #4099FF;
 }
 
 @media (max-width: 600px) {
@@ -83,4 +95,9 @@ textarea {
     .jumbotron .lead {
         display: none;
     }
+}
+
+.btn-twitter {
+    color: white;
+    background-color: #4099FF;
 }
