@@ -84,7 +84,7 @@ namespace Voluntinder.Models
     public class RegisterCharityViewModel
     {
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Charity Name")]
         public string Name { get; set; }
 
         [Required]
