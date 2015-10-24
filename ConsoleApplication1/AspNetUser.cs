@@ -21,6 +21,8 @@ namespace VoluntinderDb
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.skills_list = new HashSet<skills_list>();
+            this.Pairings = new HashSet<Pairing>();
+            this.Pairings1 = new HashSet<Pairing>();
         }
     
         public string Id { get; set; }
@@ -45,5 +47,9 @@ namespace VoluntinderDb
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<skills_list> skills_list { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pairing> Pairings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pairing> Pairings1 { get; set; }
     }
 }
