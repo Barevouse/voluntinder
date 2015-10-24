@@ -24,7 +24,8 @@ namespace Voluntinder.Controllers
         public ActionResult Index()
         {
             var model = new MatchViewModel();
-            var user = UserManager.FindById(User.Identity.GetUserId());
+            var userId = User.Identity.GetUserId();
+            var user = ApplicationDbContext.Users.FirstOrDefault(x => x.Id == userId);
 
             if (string.IsNullOrEmpty(user.Name))
             {
