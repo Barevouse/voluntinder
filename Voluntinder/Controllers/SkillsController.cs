@@ -54,7 +54,7 @@ namespace Voluntinder.Controllers
                 skillsUserHas.Add(new SkillsWithUser
                 {
                     SkillId = skill.SkillId,
-                    SkillName = skill.Skill.Skill1,
+                    SkillName = skill.Skill.Name,
                     HasSkill = true
                 });
             }
@@ -63,7 +63,7 @@ namespace Voluntinder.Controllers
 
         public List<SkillsWithUser> GetSkills(List<SkillsWithUser> skillsWithUser)
         {
-            var skills = Dbcontext.Skills.ToList();
+            var skills = Dbcontext.Skills;
             foreach (var skill in skills)
             {
                 if(!skillsWithUser.Any(x=>x.SkillId == skill.Id))
@@ -71,7 +71,7 @@ namespace Voluntinder.Controllers
                     skillsWithUser.Add(new SkillsWithUser
                     {
                         SkillId = skill.Id,
-                        SkillName = skill.Skill1,
+                        SkillName = skill.Name,
                         HasSkill = false
                     });
                 }

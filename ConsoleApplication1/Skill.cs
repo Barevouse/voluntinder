@@ -21,7 +21,7 @@ namespace VoluntinderDb
         }
     
         public long Id { get; set; }
-        public string Skill1 { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<skills_list> skills_list { get; set; }
