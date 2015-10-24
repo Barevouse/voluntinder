@@ -9,6 +9,14 @@
         <li class="hidden-xs">
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
+        @if (!ViewContext.RouteData.Values["controller"].Equals("Skills"))
+        {
+            <li>@Html.ActionLink("My Skills", "Index", "Skills")</li>
+        }
+        @if (!ViewContext.RouteData.Values["controller"].Equals("Match"))
+        {
+            <li>@Html.ActionLink("Find Matches", "Index", "Match")</li>
+        }
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
     </ul>
     }

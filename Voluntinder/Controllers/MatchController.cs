@@ -28,21 +28,42 @@ namespace Voluntinder.Controllers
             if (string.IsNullOrEmpty(user.Name))
             {
                 model.PageTitle = "Voluntinder - Find a charity";
-                //model.Users = ApplicationDbContext.Users.Where(x => !string.IsNullOrEmpty(user.Name));
+                var charities = DbContext.AspNetUsers.Where(x => !string.IsNullOrEmpty(x.Name)).ToList();
+
+                model = BuildModel(charities);
+
             }
             else
             {
                 model.PageTitle = "Voluntinder - Find a volunteer";
-                var users = DbContext.AspNetUsers.Where(x => string.IsNullOrEmpty(user.Name)).ToList();
-                foreach (var volunteer in users)
-                {
-                    model.Users.Add(new User { Email = volunteer.Email});
-                }
+                var users = DbContext.AspNetUsers.Where(x => string.IsNullOrEmpty(x.Name)).ToList();
+
+                model = BuildModel(users);
             }
 
             return View(model);
         }
+
+        public MatchViewModel BuildModel(IEnumerable<AspNetUser> users)
+        {
+            var model = new MatchViewModel();
+
+            foreach (var volunteer in users)
+            {
+                var skills = DbContext.skills_list.Where(x => x.UserId == volunteer.Id);
+                var volunteerModel = new User { Email = volunteer.Email };
+                foreach (var skill in skills)
+                {
+                    volunteerModel.Skills.Add(skill.Skill.Name);
+                }
+                model.Users.Add(volunteerModel);
+            }
+
+            return model;
+        }
     }
+
+
 
     public class MatchViewModel
     {
@@ -56,8 +77,12 @@ namespace Voluntinder.Controllers
 
     public class User
     {
+        public User()
+        {
+            Skills = new List<string>();
+        }
         public string Email { get; set; }
-        public List<skills_list> Skills { get; set; }
+        public List<string> Skills { get; set; }
 
     }
 }
