@@ -32,5 +32,6 @@ namespace VoluntinderDb
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<skills_list> skills_list { get; set; }
         public virtual DbSet<Skill> Skills { get; set; }
+        public virtual DbSet<Pairing> Pairings { get; set; }
     }
 }
