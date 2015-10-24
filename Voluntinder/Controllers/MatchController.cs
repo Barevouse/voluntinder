@@ -27,7 +27,7 @@ namespace Voluntinder.Controllers
 
             if (string.IsNullOrEmpty(user.Name))
             {
-                model.PageTitle = "Voluntinder - Find a charity";
+                model.PageTitle = "Find a charity";
                 var charities = DbContext.AspNetUsers.Where(x => !string.IsNullOrEmpty(x.Name)).ToList();
 
                 model = BuildModel(charities);
@@ -35,7 +35,7 @@ namespace Voluntinder.Controllers
             }
             else
             {
-                model.PageTitle = "Voluntinder - Find a volunteer";
+                model.PageTitle = "Find a volunteer";
                 var users = DbContext.AspNetUsers.Where(x => string.IsNullOrEmpty(x.Name)).ToList();
 
                 model = BuildModel(users);
