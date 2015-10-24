@@ -196,6 +196,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MatchViewModel.cs" />
+    <Compile Include="Models\PairingCards.cs" />
     <Compile Include="Models\SkillModels.cs" />
     <Compile Include="Models\SkillsWithUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
