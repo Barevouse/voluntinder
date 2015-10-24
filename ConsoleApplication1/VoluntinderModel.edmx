@@ -72,7 +72,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Skill" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="skills_list">
           <Key>
@@ -311,25 +311,17 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="Skills" EntityType="voluntinder_dbModel.Skill" />
           <EntitySet Name="skills_list" EntityType="voluntinder_dbModel.skills_list" />
           <AssociationSet Name="FK__skills_li__UserI__3C69FB99" Association="voluntinder_dbModel.FK__skills_li__UserI__3C69FB99">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="skills_list" EntitySet="skills_list" />
           </AssociationSet>
+          <EntitySet Name="Skills" EntityType="voluntinder_dbModel.Skill" />
           <AssociationSet Name="FK__skills_li__Skill__49C3F6B7" Association="voluntinder_dbModel.FK__skills_li__Skill__49C3F6B7">
             <End Role="Skill" EntitySet="Skills" />
             <End Role="skills_list" EntitySet="skills_list" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Skill">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Skill1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="skills_list" Relationship="voluntinder_dbModel.FK__skills_li__Skill__49C3F6B7" FromRole="Skill" ToRole="skills_list" />
-        </EntityType>
         <EntityType Name="skills_list">
           <Key>
             <PropertyRef Name="Id" />
@@ -352,6 +344,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="skills_list" Relationship="voluntinder_dbModel.FK__skills_li__Skill__49C3F6B7" FromRole="Skill" ToRole="skills_list" />
+        </EntityType>
         <Association Name="FK__skills_li__Skill__49C3F6B7">
           <End Type="voluntinder_dbModel.Skill" Role="Skill" Multiplicity="0..1" />
           <End Type="voluntinder_dbModel.skills_list" Role="skills_list" Multiplicity="*" />
@@ -434,19 +434,19 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Skills">
-            <EntityTypeMapping TypeName="voluntinder_dbModel.Skill">
-              <MappingFragment StoreEntitySet="Skill">
-                <ScalarProperty Name="Skill1" ColumnName="Skill" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="skills_list">
             <EntityTypeMapping TypeName="voluntinder_dbModel.skills_list">
               <MappingFragment StoreEntitySet="skills_list">
                 <ScalarProperty Name="SkillId" ColumnName="SkillId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="voluntinder_dbModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

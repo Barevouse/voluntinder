@@ -16,7 +16,7 @@ namespace VoluntinderDb
     public partial class voluntinder_dbEntities : DbContext
     {
         public voluntinder_dbEntities()
-            : base("name=DefaultConnection")
+            : base("name=voluntinder_dbEntities")
         {
         }
     
@@ -30,7 +30,7 @@ namespace VoluntinderDb
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<skills_list> skills_list { get; set; }
+        public virtual DbSet<Skill> Skills { get; set; }
     }
 }

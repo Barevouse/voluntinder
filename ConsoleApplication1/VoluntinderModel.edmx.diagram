@@ -13,9 +13,9 @@
         <AssociationConnector Association="voluntinder_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="voluntinder_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="voluntinder_dbModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="voluntinder_dbModel.Skill" Width="1.5" PointX="6" PointY="7.75" />
         <EntityTypeShape EntityType="voluntinder_dbModel.skills_list" Width="1.5" PointX="8.25" PointY="2.5" />
         <AssociationConnector Association="voluntinder_dbModel.FK__skills_li__UserI__3C69FB99" />
+        <EntityTypeShape EntityType="voluntinder_dbModel.Skill" Width="1.5" PointX="3.375" PointY="6.875" />
         <AssociationConnector Association="voluntinder_dbModel.FK__skills_li__Skill__49C3F6B7" />
       </Diagram>
     </edmx:Diagrams>
