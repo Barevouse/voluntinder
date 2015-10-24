@@ -12,20 +12,18 @@ namespace Voluntinder.Controllers
     [Authorize]
     public class MatchController : Controller
     {
-        protected ApplicationDbContext ApplicationDbContext { get; set; }
-        protected UserManager<ApplicationUser> UserManager { get; set; }
+        protected voluntinder_dbEntities DbContext;
 
         public MatchController()
         {
-            ApplicationDbContext = new ApplicationDbContext();
-            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.ApplicationDbContext));
+            DbContext = new voluntinder_dbEntities();
         }
         // GET: Match
         public ActionResult Index()
         {
             var model = new MatchViewModel();
             var userId = User.Identity.GetUserId();
-            var user = ApplicationDbContext.Users.FirstOrDefault(x => x.Id == userId);
+            var user = DbContext.AspNetUsers.FirstOrDefault(x => x.Id == userId);
 
             if (string.IsNullOrEmpty(user.Name))
             {
@@ -35,7 +33,7 @@ namespace Voluntinder.Controllers
             else
             {
                 model.PageTitle = "Voluntinder - Find a volunteer";
-                var users = ApplicationDbContext.Users.Where(x => string.IsNullOrEmpty(user.Name)).ToList();
+                var users = DbContext.AspNetUsers.Where(x => string.IsNullOrEmpty(user.Name)).ToList();
                 foreach (var volunteer in users)
                 {
                     model.Users.Add(new User { Email = volunteer.Email});
