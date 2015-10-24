@@ -5,28 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="227b915c-5cdd-4f0e-8aae-b5e79317fba3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Voluntinder/fonts/Chalet-NewYorkNineteenSixty.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Voluntinder/fonts/Chalet-NewYorkNineteenSixty.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Voluntinder/fonts/Chalet-NewYorkNineteenSixty.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Voluntinder/fonts/Chalet-ParisNineteenSixty.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Voluntinder/fonts/Chalet-ParisNineteenSixty.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Voluntinder/fonts/Chalet-ParisNineteenSixty.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Voluntinder/fonts/Chalet-NewYorkNineteenSixty.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Voluntinder/fonts/Chalet-ParisNineteenSixty.svg" />
-      <change type="DELETED" beforePath="D:\Code\Voluntinder\Voluntinder\fonts\ChaletNewYorkNineteenSeventy.eot" afterPath="" />
-      <change type="DELETED" beforePath="D:\Code\Voluntinder\Voluntinder\fonts\ChaletNewYorkNineteenSeventy.ttf" afterPath="" />
-      <change type="DELETED" beforePath="D:\Code\Voluntinder\Voluntinder\fonts\ChaletNewYorkNineteenSeventy.woff" afterPath="" />
-      <change type="DELETED" beforePath="D:\Code\Voluntinder\Voluntinder\fonts\ChaletParisNineteenSixty.eot" afterPath="" />
-      <change type="DELETED" beforePath="D:\Code\Voluntinder\Voluntinder\fonts\ChaletParisNineteenSixty.ttf" afterPath="" />
-      <change type="DELETED" beforePath="D:\Code\Voluntinder\Voluntinder\fonts\ChaletParisNineteenSixty.woff" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Voluntinder/Content/Site.css" afterPath="$PROJECT_DIR$/../../../Voluntinder/Content/Site.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Voluntinder/Voluntinder.csproj" afterPath="$PROJECT_DIR$/../../../Voluntinder/Voluntinder.csproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../config.xml" afterPath="$PROJECT_DIR$/../../config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/config.xml" afterPath="$PROJECT_DIR$/res/xml/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />

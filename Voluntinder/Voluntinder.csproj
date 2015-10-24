@@ -211,6 +211,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\HeaderLogo.png" />
+    <Content Include="Images\HomeBannerBackground.jpg" />
+    <Content Include="Images\HomeBannerLogo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\Chalet-NewYorkNineteenSixty.eot" />
