@@ -24,7 +24,7 @@ namespace Voluntinder.Controllers
             Dbcontext = new voluntinder_dbEntities();
         }
 
-        public ActionResult Skills()
+        public ActionResult Index()
         {
             var userSkills = GetUserSkills(User.Identity.GetUserId());
             var allSkills = GetSkills(userSkills);
@@ -63,10 +63,10 @@ namespace Voluntinder.Controllers
 
         public List<SkillsWithUser> GetSkills(List<SkillsWithUser> skillsWithUser)
         {
-            var skills = new List<Skill>();
+            var skills = Dbcontext.Skills.ToList();
             foreach (var skill in skills)
             {
-                if(skillsWithUser.Any(x=>x.SkillId != skill.Id))
+                if(!skillsWithUser.Any(x=>x.SkillId == skill.Id))
                 {
                     skillsWithUser.Add(new SkillsWithUser
                     {
