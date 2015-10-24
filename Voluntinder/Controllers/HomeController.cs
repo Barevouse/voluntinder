@@ -6,6 +6,10 @@ namespace Voluntinder.Controllers
     {
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Match");
+            }
             return View();
         }
     }
