@@ -2,16 +2,16 @@
 <widget id="com.bishbashbob.voluntinder" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Voluntinder</name>
     <description>
-        Find your match.
+        Find your charity match
     </description>
     <author email="daniel.smith@hronline.co.uk" href="http://voluntinder.azurewebsites.net/">
         Bish, Bash, Bob
     </author>
-    <content src="http://voluntinder.azurewebsites.net" />
+    <content src="http://voluntinder.azurewebsites.net/Match" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
-    <preference name="fullscreen" value="true" />
+    <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="true" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
