@@ -33,7 +33,7 @@ namespace Voluntinder.Controllers
             else
             {
                 model.PageTitle = "Voluntinder - Find a volunteer";
-                var users = DbContext.AspNetUsers.Where(x => string.IsNullOrEmpty(user.Name)).ToList();
+                var users = DbContext.AspNetUsers.Where(x => string.IsNullOrEmpty(x.Name)).ToList();
                 foreach (var volunteer in users)
                 {
                     model.Users.Add(new User { Email = volunteer.Email});
