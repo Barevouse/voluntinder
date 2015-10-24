@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -10,6 +9,9 @@ namespace Voluntinder.Models
     public class ApplicationUser : IdentityUser
     {
         public string Name { get; set; }
+        public string Location { get; set; }
+        public string ImageUrl { get; set; }
+        public string Description { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
