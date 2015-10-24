@@ -12,13 +12,18 @@ namespace VoluntinderDb
     using System;
     using System.Collections.Generic;
     
-    public partial class skills_list
+    public partial class Skill
     {
-        public long Id { get; set; }
-        public string UserId { get; set; }
-        public Nullable<long> SkillId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Skill()
+        {
+            this.skills_list = new HashSet<skills_list>();
+        }
     
-        public virtual AspNetUser AspNetUser { get; set; }
-        public virtual Skill Skill { get; set; }
+        public long Id { get; set; }
+        public string Skill1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<skills_list> skills_list { get; set; }
     }
 }

@@ -65,6 +65,14 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Skill" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="skills_list">
           <Key>
@@ -72,8 +80,20 @@
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Skills" Type="nvarchar(max)" />
+          <Property Name="SkillId" Type="bigint" />
         </EntityType>
+        <Association Name="FK__skills_li__Skill__49C3F6B7">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="0..1" />
+          <End Role="skills_list" Type="Self.skills_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="skills_list">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__skills_li__UserI__3C69FB99">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="skills_list" Type="Self.skills_list" Multiplicity="*" />
@@ -149,7 +169,12 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="skills_list" EntityType="Self.skills_list" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__skills_li__Skill__49C3F6B7" Association="Self.FK__skills_li__Skill__49C3F6B7">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="skills_list" EntitySet="skills_list" />
+          </AssociationSet>
           <AssociationSet Name="FK__skills_li__UserI__3C69FB99" Association="Self.FK__skills_li__UserI__3C69FB99">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="skills_list" EntitySet="skills_list" />
@@ -233,16 +258,8 @@
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="skills_list" Relationship="voluntinder_dbModel.FK__skills_li__UserI__3C69FB99" FromRole="AspNetUser" ToRole="skills_list" />
-        </EntityType>
-        <EntityType Name="skills_list">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="voluntinder_dbModel.FK__skills_li__UserI__3C69FB99" FromRole="skills_list" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -282,7 +299,6 @@
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
-          <EntitySet Name="skills_list" EntityType="Self.skills_list" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -295,11 +311,35 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Skills" EntityType="voluntinder_dbModel.Skill" />
+          <EntitySet Name="skills_list" EntityType="voluntinder_dbModel.skills_list" />
           <AssociationSet Name="FK__skills_li__UserI__3C69FB99" Association="voluntinder_dbModel.FK__skills_li__UserI__3C69FB99">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="skills_list" EntitySet="skills_list" />
           </AssociationSet>
+          <AssociationSet Name="FK__skills_li__Skill__49C3F6B7" Association="voluntinder_dbModel.FK__skills_li__Skill__49C3F6B7">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="skills_list" EntitySet="skills_list" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Skill1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="skills_list" Relationship="voluntinder_dbModel.FK__skills_li__Skill__49C3F6B7" FromRole="Skill" ToRole="skills_list" />
+        </EntityType>
+        <EntityType Name="skills_list">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SkillId" Type="Int64" />
+          <NavigationProperty Name="AspNetUser" Relationship="voluntinder_dbModel.FK__skills_li__UserI__3C69FB99" FromRole="skills_list" ToRole="AspNetUser" />
+          <NavigationProperty Name="Skill" Relationship="voluntinder_dbModel.FK__skills_li__Skill__49C3F6B7" FromRole="skills_list" ToRole="Skill" />
+        </EntityType>
         <Association Name="FK__skills_li__UserI__3C69FB99">
           <End Type="voluntinder_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
           <End Type="voluntinder_dbModel.skills_list" Role="skills_list" Multiplicity="*" />
@@ -309,6 +349,18 @@
             </Principal>
             <Dependent Role="skills_list">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__skills_li__Skill__49C3F6B7">
+          <End Type="voluntinder_dbModel.Skill" Role="Skill" Multiplicity="0..1" />
+          <End Type="voluntinder_dbModel.skills_list" Role="skills_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="skills_list">
+              <PropertyRef Name="SkillId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -358,6 +410,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="voluntinder_dbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
@@ -373,15 +426,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="skills_list">
-            <EntityTypeMapping TypeName="voluntinder_dbModel.skills_list">
-              <MappingFragment StoreEntitySet="skills_list">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Skills" ColumnName="Skills" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="voluntinder_dbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -390,6 +434,23 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="voluntinder_dbModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="Skill1" ColumnName="Skill" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="skills_list">
+            <EntityTypeMapping TypeName="voluntinder_dbModel.skills_list">
+              <MappingFragment StoreEntitySet="skills_list">
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
