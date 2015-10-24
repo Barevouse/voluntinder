@@ -210,6 +210,12 @@
     <Content Include="Images\HeaderLogo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\ChaletNewYorkNineteenSeventy.eot" />
+    <Content Include="fonts\ChaletNewYorkNineteenSeventy.ttf" />
+    <Content Include="fonts\ChaletNewYorkNineteenSeventy.woff" />
+    <Content Include="fonts\ChaletParisNineteenSixty.ttf" />
+    <Content Include="fonts\ChaletParisNineteenSixty.eot" />
+    <Content Include="fonts\ChaletParisNineteenSixty.woff" />
     <None Include="Properties\PublishProfiles\voluntinder.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
