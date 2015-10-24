@@ -10,11 +10,11 @@
         <li class="hidden-xs">
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        @if (!ViewContext.RouteData.Values["controller"].Equals("Skills"))
+        @if (!ViewContext.RouteData.Values["controller"].ToString().ToLower().Equals("skills"))
         {
             <li>@Html.ActionLink("Skills", "Index", "Skills")</li>
         }
-        @if (!ViewContext.RouteData.Values["controller"].Equals("Match"))
+        @if (!ViewContext.RouteData.Values["controller"].ToString().ToLower().Equals("match"))
         {
             <li>@Html.ActionLink("Find", "Index", "Match")</li>
         }
