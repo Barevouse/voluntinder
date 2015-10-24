@@ -25,9 +25,16 @@ namespace Voluntinder.Controllers
             Dbcontext.SaveChanges();
         }
 
-        public List<String> GetSkills(string userId)
+        public List<string> GetUserSkills(string userId)
         {
             var skills = Dbcontext.skills_list.Where(x => x.UserId == userId).Select(y=>y.Skills).ToList();
+            return skills;
+        }
+
+        public List<string> GetSkills()
+        {
+            var skills = new List<string>();
+            skills.Add("");
             return skills;
         }
     }
