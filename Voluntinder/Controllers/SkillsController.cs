@@ -8,6 +8,7 @@ using ConsoleApplication1;
 
 namespace Voluntinder.Controllers
 {
+    [Authorize]
     public class SkillsController : Controller
     {
         public voluntinder_dbEntities Dbcontext;
