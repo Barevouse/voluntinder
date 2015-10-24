@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Tweetinvi;
+using Tweetinvi.Core.Credentials;
 using Voluntinder.Models;
 
 namespace Voluntinder.Controllers
@@ -374,7 +376,19 @@ namespace Voluntinder.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var twitterCredentials = new TwitterCredentials("0N5Q3XLB9CyXBaskZGlurmjr4", "2wsz47zbOEQaj8hz2UCkozxFU8BwldpTPqb42I2grRYJWiYseF", "401598968-hM5pvUyjZPcH9J5B32l9u3SjuLoKuybwS2SNxdhA", "FN5HEHob09t75fJJB422KP4MmJMzg2DvKlMgCkhr9HjKV");
+                var profile = Auth.ExecuteOperationWithCredentials(twitterCredentials, () =>
+                {
+                    return Tweetinvi.User.GetUserFromScreenName(info.DefaultUserName);
+                });
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Description = profile.Description,
+                    Location = profile.Location,
+                    ImageUrl = profile.ProfileImageUrlHttps
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
