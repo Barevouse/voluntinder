@@ -9,11 +9,14 @@
     Here you can add skills so we can find the most suited charities for you!
 </p>
 
+@Html.BeginForm("Save", "Skills", FormMethod.Post)
+
 @foreach (var skill in @Model.Skills)
 {
     <div class="checkbox">
         <label>
-            <input id="skill-@skill.SkillId" type="checkbox" name="@skill.SkillName" value="@skill.SkillId" @{if (skill.HasSkill) { <text> checked="checked" </text>     } } /> @skill.SkillName
+            <input id="skill-@skill.SkillId" type="checkbox" name="selectedObjects" value="@skill.SkillId" @{if (skill.HasSkill) { <text> checked="checked" </text>      } } /> @skill.SkillName
         </label>
     </div>
 }
+<input type="submit" value="Submit" />
