@@ -9,6 +9,10 @@
     {
         <div style="@(isFirst ? "selected" : string.Empty)">
             @user.Email
+            @foreach (var skill in user.Skills)
+            {
+                @skill
+            }
         </div>
         
         {
