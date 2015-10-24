@@ -3,11 +3,11 @@
     ViewBag.Title = Model.PageTitle;
 }
 
-@for (var index = 0; index < Model.Users.Count; index++)
-{
-    var user = Model.Users[index];
-    <div class="row">
-        <div id="user-@index" class="col-md-12">
+<div id="profiles" class="row">
+    @for (var index = 0; index < Model.Users.Count; index++)
+    {
+        var user = Model.Users[index];
+        <div class="profile" id="user-@index" class="col-md-12">
             <h2>@user.Email</h2>
             <ul>
                 @foreach (var skill in user.Skills)
@@ -16,10 +16,42 @@
                 }
             </ul>
         </div>
+    }
+    <div id="done" class="col-md-12">
+        <h4>Done! Update your skills or try again later for more matches</h4>
     </div>
-}
+</div>
 
 @section Scripts
 {
     @Scripts.Render("~/bundles/iscroll")
+
+    <script type="text/javascript">
+        var profiles = $('.profile');
+        var currentIndex = 0;
+        $(profiles[currentIndex]).addClass('current');
+
+        function acceptProfile() {
+            moveProfile('accept');
+        }
+
+        function rejectProfile() {
+            moveProfile('reject');
+        }
+
+        function moveProfile(classToAdd) {
+            $(profiles[currentIndex]).addClass(classToAdd).toggleClass('current');
+            $(profiles[currentIndex + 1]).toggleClass('current');
+
+            currentIndex = currentIndex + 1;
+            if (currentIndex == profiles.length) {
+                $('#done').addClass('current');
+            }
+        }
+
+        $(profiles).swipeleft(rejectProfile);
+        $(profiles).swiperight(acceptProfile);
+
+        iscroll = new iScroll('profiles', { hScrollbar: false, vScrollbar: false });
+    </script>
 }

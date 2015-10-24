@@ -101,3 +101,11 @@ textarea {
     color: white;
     background-color: #4099FF;
 }
+
+.profile, #done {
+    display: none;
+}
+
+.profile.current, #done.current {
+    display: block;
+}
