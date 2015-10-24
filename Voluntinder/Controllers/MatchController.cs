@@ -36,7 +36,13 @@ namespace Voluntinder.Controllers
                 var users = DbContext.AspNetUsers.Where(x => string.IsNullOrEmpty(x.Name)).ToList();
                 foreach (var volunteer in users)
                 {
-                    model.Users.Add(new User { Email = volunteer.Email});
+                    var skills = DbContext.skills_list.Where(x => x.UserId == volunteer.Id);
+                    var volunteerModel = new User {Email = volunteer.Email};
+                    foreach (var skill in skills)
+                    {
+                        volunteerModel.Skills.Add(skill.Skill.Name);
+                    }
+                    model.Users.Add(volunteerModel);
                 }
             }
 
@@ -56,8 +62,12 @@ namespace Voluntinder.Controllers
 
     public class User
     {
+        public User()
+        {
+            Skills = new List<string>();
+        }
         public string Email { get; set; }
-        public List<skills_list> Skills { get; set; }
+        public List<string> Skills { get; set; }
 
     }
 }
