@@ -72,3 +72,7 @@ textarea {
         display: none;
     }
 }
+
+ul.skills li {
+    list-style-type: none;
+}
