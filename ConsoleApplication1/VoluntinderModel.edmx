@@ -66,6 +66,7 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="IsCharity" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'voluntinder_db.dbo.Pairing' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -316,6 +317,7 @@ warning 6002: The table/view 'voluntinder_db.dbo.Pairing' does not have a primar
           <NavigationProperty Name="skills_list" Relationship="voluntinder_dbModel.FK__skills_li__UserI__3C69FB99" FromRole="AspNetUser" ToRole="skills_list" />
           <NavigationProperty Name="Pairings" Relationship="voluntinder_dbModel.FK__Pairing__PairedU__4E88ABD4" FromRole="AspNetUser" ToRole="Pairing" />
           <NavigationProperty Name="Pairings1" Relationship="voluntinder_dbModel.FK__Pairing__UserId__4D94879B" FromRole="AspNetUser" ToRole="Pairing" />
+          <Property Name="IsCharity" Type="Boolean" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -513,6 +515,7 @@ warning 6002: The table/view 'voluntinder_db.dbo.Pairing' does not have a primar
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="voluntinder_dbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="IsCharity" ColumnName="IsCharity" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
