@@ -36,19 +36,33 @@ namespace Voluntinder.Controllers
             return View(model);
         }
 
-        public void SaveSkills(string userId, List<long> skills)
+        public ActionResult Save(List<long> selectedObjects)
         {
-            foreach (var skill in skills)
+            var userId = User.Identity.GetUserId();
+            var oldSkills = Dbcontext.skills_list.Where(x => x.UserId == userId).ToList();
+            foreach (var skill in oldSkills)
             {
-                Dbcontext.skills_list.Add(new skills_list {UserId = userId, SkillId = skill});
+                Dbcontext.skills_list.Remove(skill);
             }
             Dbcontext.SaveChanges();
+            foreach (var skill in selectedObjects)
+            {
+                Dbcontext.skills_list.Add(new skills_list
+                {
+                    UserId = userId,
+                    SkillId = skill
+                });
+            }
+            Dbcontext.SaveChanges();
+
+            return RedirectToAction("Index");
+
         }
 
         public List<SkillsWithUser> GetUserSkills(string userId)
         {
             var skillsUserHas = new List<SkillsWithUser>();
-            var skills = Dbcontext.skills_list.Where(x => x.UserId == userId).ToList();
+            var skills = Dbcontext.skills_list.Where(x => x.UserId == userId).Include(y=>y.Skill).ToList();
             foreach (var skill in skills)
             {
                 skillsUserHas.Add(new SkillsWithUser

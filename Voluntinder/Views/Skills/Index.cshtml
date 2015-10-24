@@ -1,4 +1,5 @@
-﻿@model Voluntinder.Models.SkillModels
+﻿@using VoluntinderDb
+@model Voluntinder.Models.SkillModels
 @{
     ViewBag.Title = "Skills";
 }
@@ -8,13 +9,15 @@
 <p>
     Here you can add skills so we can find the most suited charities for you!
 </p>
-
+@Html.BeginForm("Save", "Skills", FormMethod.Post)
 <ul class="skills">
     @foreach (var skill in @Model.Skills)
     {
         <li>
-            <input id="skill-@skill.SkillId" type="checkbox" name="@skill.SkillName" value="@skill.SkillId" @{if (skill.HasSkill) { <text> checked="checked" </text>    } } />
+            <input id="skill-@skill.SkillId" type="checkbox" name="selectedObjects" value="@skill.SkillId" @{if (skill.HasSkill) { <text> checked="checked" </text>    } } />
             <label for="skill-@skill.SkillId">@skill.SkillName</label>
         </li>
     }
+    <input type="submit" value="Submit"/>
+    
 </ul>
