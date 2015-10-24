@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConsoleApplication1
+namespace VoluntinderDb
 {
     using System;
     using System.Collections.Generic;

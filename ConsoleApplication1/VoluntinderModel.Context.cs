@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConsoleApplication1
+namespace VoluntinderDb
 {
     using System;
     using System.Data.Entity;
@@ -16,7 +16,7 @@ namespace ConsoleApplication1
     public partial class voluntinder_dbEntities : DbContext
     {
         public voluntinder_dbEntities()
-            : base("name=voluntinder_dbEntities")
+            : base("name=DefaultConnection")
         {
         }
     
@@ -30,6 +30,7 @@ namespace ConsoleApplication1
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<skills_list> skills_list { get; set; }
     }
 }
