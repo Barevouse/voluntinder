@@ -102,6 +102,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="TwitterOAuth, Version=0.50.25.1928, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TwitterOAuth.0.50.25.1928\lib\TwitterOAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>

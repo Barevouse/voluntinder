@@ -45,6 +45,7 @@ namespace Voluntinder
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
+            app.UseTwitterAuthentication("0N5Q3XLB9CyXBaskZGlurmjr4", "2wsz47zbOEQaj8hz2UCkozxFU8BwldpTPqb42I2grRYJWiYseF");
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",
