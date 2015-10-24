@@ -16,7 +16,7 @@ namespace VoluntinderDb
     public partial class voluntinder_dbEntities : DbContext
     {
         public voluntinder_dbEntities()
-            : base("name=DefaultConnection")
+            : base("name=voluntinder_dbEntities")
         {
         }
     
