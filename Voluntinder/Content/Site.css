@@ -20,6 +20,7 @@ body {
     font-family: 'ChaletParis', Fallback, sans-serif;
     padding-top: 50px;
     padding-bottom: 20px;
+    font-size: 1.6rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
