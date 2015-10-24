@@ -9,12 +9,11 @@
     Here you can add skills so we can find the most suited charities for you!
 </p>
 
-<ul class="skills">
-    @foreach (var skill in @Model.Skills)
-    {
-        <li>
-            <input id="skill-@skill.SkillId" type="checkbox" name="@skill.SkillName" value="@skill.SkillId" @{if (skill.HasSkill) { <text> checked="checked" </text>    } } />
-            <label for="skill-@skill.SkillId">@skill.SkillName</label>
-        </li>
-    }
-</ul>
+@foreach (var skill in @Model.Skills)
+{
+    <div class="checkbox">
+        <label>
+            <input id="skill-@skill.SkillId" type="checkbox" name="@skill.SkillName" value="@skill.SkillId" @{if (skill.HasSkill) { <text> checked="checked" </text>     } } /> @skill.SkillName
+        </label>
+    </div>
+}
