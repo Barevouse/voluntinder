@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using ConsoleApplication1;
@@ -18,17 +19,35 @@ namespace Voluntinder.Controllers
         {
             DbContext = new voluntinder_dbEntities();
         }
+
         // GET: Match
         public ActionResult Index()
         {
             var model = new MatchViewModel();
             var userId = User.Identity.GetUserId();
             var user = DbContext.AspNetUsers.FirstOrDefault(x => x.Id == userId);
+            var matches = new List<PairingCards>();
 
-            if (string.IsNullOrEmpty(user.Name))
+            if (user.IsCharity == false)
             {
                 model.PageTitle = "Find a charity";
-                var charities = DbContext.AspNetUsers.Where(x => !string.IsNullOrEmpty(x.Name)).ToList();
+                var charities = DbContext.AspNetUsers.Where(x => x.IsCharity == true).ToList();
+                var pairings = DbContext.Pairings.Where(y => y.UserId == user.Id);
+                foreach (var pair in charities)
+                {
+                    foreach (var pairing in pairings)
+                    {
+                        if (pairing.PairedUser != pair.Id)
+                        {
+                            matches.Add(new PairingCards
+                            {
+                                Name = pair.Name,
+                                Description = null,
+
+                            });
+                        }
+                    }
+                }
 
                 model = BuildModel(charities);
 
@@ -48,41 +67,20 @@ namespace Voluntinder.Controllers
         {
             var model = new MatchViewModel();
 
-            foreach (var volunteer in users)
-            {
-                var skills = DbContext.skills_list.Where(x => x.UserId == volunteer.Id);
-                var volunteerModel = new User { Email = volunteer.Email };
-                foreach (var skill in skills)
-                {
-                    volunteerModel.Skills.Add(skill.Skill.Name);
-                }
-                model.Users.Add(volunteerModel);
-            }
+            //    foreach (var volunteer in users)
+            //    {
+            //        var skills = DbContext.skills_list.Where(x => x.UserId == volunteer.Id);
+            //        var volunteerModel = new User { Email = volunteer.Email };
+            //        foreach (var skill in skills)
+            //        {
+            //            volunteerModel.Skills.Add(skill.Skill.Name);
+            //        }
+            //        model.Users.Add(volunteerModel);
+            //    }
 
             return model;
+            //}
         }
-    }
-
-
-
-    public class MatchViewModel
-    {
-        public MatchViewModel()
-        {
-            Users = new List<User>();
-        }
-        public string PageTitle { get; set; }
-        public List<User> Users { get; set; }
-    }
-
-    public class User
-    {
-        public User()
-        {
-            Skills = new List<string>();
-        }
-        public string Email { get; set; }
-        public List<string> Skills { get; set; }
 
     }
 }
