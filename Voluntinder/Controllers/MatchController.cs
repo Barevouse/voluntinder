@@ -2,8 +2,9 @@
 
 namespace Voluntinder.Controllers
 {
-    public class HomeController : Controller
+    public class MatchController : Controller
     {
+        // GET: Match
         public ActionResult Index()
         {
             return View();
