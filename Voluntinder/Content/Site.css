@@ -64,6 +64,17 @@ textarea {
     text-shadow: 2px 2px #000000;
 }
 
+.fakeLink{
+    border: 0px;
+    background-color: transparent;
+    color: blue;
+    cursor: hand;
+    padding-top: 15px;
+} 
+.fakelink:hover{
+    text-decoration: underline;
+}
+
 @media (max-width: 600px) {
     .jumbotron img {
         width: 100%;

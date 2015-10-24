@@ -267,7 +267,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Skills\Index.cshtml" />
-    <Content Include="Views\Account\RegisterCharity.cshtml" />
     <Content Include="Views\Match\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
