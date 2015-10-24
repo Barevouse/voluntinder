@@ -1,10 +1,21 @@
-﻿@{
-    ViewBag.Title = "Your Matches";
+﻿@model Voluntinder.Controllers.MatchViewModel
+@{
+    ViewBag.Title = Model.PageTitle;
 }
 
 <div class="row">
-
-</div>
+    @{ var isFirst = true; }
+    @foreach (var user in Model.Users)
+    {
+        <div style="@(isFirst ? "selected" : string.Empty)">
+            @user.Email
+        </div>
+        
+        {
+            isFirst = false;
+        }
+    }
+    </div>
 <div class="row">
     <div class="col-md-4">
         <h2>Match 1</h2>
