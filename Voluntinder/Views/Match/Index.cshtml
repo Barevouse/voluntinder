@@ -1,25 +1,28 @@
-﻿@model Voluntinder.Models.MatchViewModel 
+﻿@model Voluntinder.Models.MatchViewModel
 @{
     ViewBag.Title = Model.PageTitle;
 }
 
 <div id="profiles" class="row">
-    @foreach (var user in Model.Profile)
-    {
-        <div class="profile" data-user-id="@user.UserId">
-            <a class="info" href="/Profile?profileId=@user.UserId">
-                <img src="@user.ImageUrl" alt="@user.Name" />
-            </a>
-            <div class="details">
+@foreach (var user in Model.Profile)
+{
+    <div class="profile" data-user-id="@user.UserId">
+        <a class="info" href="/Profile?profileId=@user.UserId">
+            <img src="@user.ImageUrl" alt="@user.Name" />
+        </a>
+        <div class="details">
+            <div>
                 <span class="name">@user.Name</span>
-                <a class="username" href="//www.twitter.com/@user.UserName">@@@(user.UserName) <span class="fa fa-fw fa-twitter"></span></a>
+                <span>@user.Distance</span>
             </div>
-            <div class="actions">
-                <a class="reject" onclick="rejectProfile()"><span class="fa fa-fw fa-times"></span></a>
-                <a class="info" href="/Profile?profileId=@user.UserId"><span class="fa fa-fw fa-info"></span></a>
-                <a class="accept" onclick="acceptProfile()"><span class="fa fa-fw fa-heart"></span></a>
-            </div>
+            <a class="username" href="//www.twitter.com/@user.UserName">@@@(user.UserName) <span class="fa fa-fw fa-twitter"></span></a>
         </div>
+        <div class="actions">
+            <a class="reject" onclick="rejectProfile()"><span class="fa fa-fw fa-times"></span></a>
+            <a class="info" href="/Profile?profileId=@user.UserId"><span class="fa fa-fw fa-info"></span></a>
+            <a class="accept" onclick="acceptProfile()"><span class="fa fa-fw fa-heart"></span></a>
+        </div>
+    </div>
     }
     <div id="nomatches">
         <h3>No matches!</h3>
@@ -28,7 +31,7 @@
     </div>
     <div id="done">
         <h3>Done!</h3>
-        <p>Update your skills or try again later for more matches</p>   
+        <p>Update your skills or try again later for more matches</p>
         <a class="btn btn-default btn-primary" href="/Skills">Update now</a>
     </div>
 </div>
@@ -41,7 +44,7 @@
         });
     </script>
     @Scripts.Render("~/bundles/jquerymobile")
-    
+
     <script type="text/javascript">
         var profiles = $('.profile');
         var currentIndex = 0;

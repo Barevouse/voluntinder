@@ -238,14 +238,18 @@ textarea {
     clear: both;
 }
 
-.profile .details span {
-    font-weight: bold;
+.profile .details div {
+    float: left;
+}
+
+.profile .details div span {
+    display: block;
 }
 
 .profile .details .name {
-    font-size: 24px;
+    display: block;
     font-weight: bold;
-    float: left;
+    font-size: 24px;
 }
 
 .profile .details .username {
