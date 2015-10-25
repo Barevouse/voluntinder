@@ -70,6 +70,8 @@
           <Property Name="ImageUrl" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
         </EntityType>
         <EntityType Name="Pairing">
           <Key>
@@ -313,6 +315,8 @@
           <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Pairings" Relationship="voluntinder_dbModel.FK__Pairing__PairedU__4E88ABD4" FromRole="AspNetUser" ToRole="Pairing" />
           <NavigationProperty Name="Pairings1" Relationship="voluntinder_dbModel.FK__Pairing__UserId__4D94879B" FromRole="AspNetUser" ToRole="Pairing" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -508,6 +512,8 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="voluntinder_dbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
