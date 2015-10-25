@@ -124,22 +124,25 @@ textarea {
   100% { opacity: 1; }
 }
 
-.profile {
+.profile, .tweets {
     max-width: 400px;
     width: 95%;
     margin: auto;
     margin-top: 20px;
-    padding: 0;
     border: 1px solid #D1D1D1;
     -ms-border-radius: 10px;
     border-radius: 10px;
 }
 
+.profile {
+    padding: 0;
+ }
+
 .profile, #done, #nomatches {
     display: none;
 }
 
-.profile.current, #done.current, #nomatches .current {
+.profile.current, #done.current, #nomatches.current, .profile.full {
     display: block;
     -webkit-animation-name: fadeIn;
     -webkit-animation-duration: 1s;
@@ -169,6 +172,14 @@ textarea {
     overflow: hidden;
 }
 
+.profile .details p {
+    clear: both;
+}
+
+.profile .details span {
+    font-weight: bold;
+}
+
 .profile .details .name {
     font-size: 24px;
     font-weight: bold;
@@ -179,6 +190,21 @@ textarea {
     font-size: 18px;
     float: right;
     padding-top: 10px;
+}
+
+.profile .details ul.skills {
+    margin: 0;
+    padding: 0;
+}
+
+.profile .details ul.skills li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid #FF7854;
+    background-color: #FFBCAA;
+    border-radius: 5px;
 }
 
 .profile .actions {
@@ -218,6 +244,25 @@ textarea {
     padding: 4px 13px;
     font-size: 24px;
     margin-top: -15px;
+}
+
+.tweets {
+    padding: 5px;
+}
+
+.tweets h4 {
+    margin-left: 5px;
+}
+
+.tweets ul li {
+    list-style: none;
+}
+
+.tweets ul li:before {
+    content: "\f099";
+    font-family: 'FontAwesome';
+    float: left;
+    margin-left: -1.5em;
 }
 
 .navbar li a.navbar-profile {
