@@ -9,17 +9,8 @@
         <div class="profile col-md-12" data-user-id="@user.UserId">
             <img src="@user.ImageUrl" alt="@user.Name"/>
             <div class="details">
-                <h2>@user.Name</h2>
-                <h3>@@@(user.UserName)</h3>
-                <ul>
-                    @foreach (var skill in user.Skills)
-                    {
-                        <li>@skill.Name</li>
-                    }
-                </ul>
-                <div class="more">
-                    <p>@user.Description</p>
-                </div>
+                <span class="name">@user.Name</span>
+                <a class="username" href="//www.twitter.com/@user.UserName">@@@(user.UserName) <span class="fa fa-twitter"></span></a>
             </div>
         </div>
     }
