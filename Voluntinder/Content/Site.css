@@ -142,7 +142,7 @@ textarea {
     display: none;
 }
 
-.profile.current, #done.current, #nomatches.current, .profile.full {
+.profile.current, #done.current, #nomatches.current, .profile.full, .tweets {
     display: block;
     -webkit-animation-name: fadeIn;
     -webkit-animation-duration: 1s;
