@@ -40,10 +40,14 @@
     <script type="text/javascript">
         var profiles = $('.profile');
         var currentIndex = 0;
-        $(profiles[currentIndex]).addClass('current');
+        if (profiles.length == 0) {
+            $('#done').addClass('current');
+        } else {
+            $(profiles[currentIndex]).addClass('current');
+        }
 
         function showHideMore() {
-            $(profiles[currentIndex]).find('.more').toggleClass("expanded");
+            $(profiles[currentIndex]).find('.more').addClass("expanded");
         }
 
         function acceptProfile() {

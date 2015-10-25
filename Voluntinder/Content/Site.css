@@ -168,11 +168,17 @@ textarea {
 }
 
 .profile .more {
-    display: none;
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
 }
 
 .profile .more.expanded {
-    display: block;
+    opacity: 1;
+    transform: translateY(0);
     -webkit-animation-name: slideDown;
     -webkit-animation-duration: 1s;
     -moz-animation-name: slideDown;
