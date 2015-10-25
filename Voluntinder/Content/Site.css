@@ -139,7 +139,7 @@ textarea {
     display: none;
 }
 
-.profile.current, #done.current, #nomatches .current {
+.profile.current, #done.current, #nomatches.current, .profile.full {
     display: block;
     -webkit-animation-name: fadeIn;
     -webkit-animation-duration: 1s;
@@ -169,6 +169,14 @@ textarea {
     overflow: hidden;
 }
 
+.profile .details p {
+    clear: both;
+}
+
+.profile .details span {
+    font-weight: bold;
+}
+
 .profile .details .name {
     font-size: 24px;
     font-weight: bold;
@@ -179,6 +187,21 @@ textarea {
     font-size: 18px;
     float: right;
     padding-top: 10px;
+}
+
+.profile .details ul.skills {
+    margin: 0;
+    padding: 0;
+}
+
+.profile .details ul.skills li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid #FF7854;
+    background-color: #FFBCAA;
+    border-radius: 5px;
 }
 
 .profile .actions {

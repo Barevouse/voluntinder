@@ -1,16 +1,19 @@
-﻿@model Voluntinder.Models.ProfileViewModel 
-
-<div>
-    <img src="@Model.ImageUrl" alt="@Model.Name" width="400" height="400" />
-    <h2>@Model.Name</h2>
-    <h3>@Model.UserName</h3>
-    <ul>
-        @foreach (var skill in Model.Skills)
-        {
-            <li>@skill.Name</li>
-        }
-    </ul>
-    <div class="more">
+﻿@model Voluntinder.Models.ProfileViewModel
+<div class="profile full">
+    <img src="@Model.ImageUrl" alt="@Model.Name" />
+    <div class="details">
+        <span class="name">@Model.Name</span>
+        <a class="username" href="//www.twitter.com/@Model.UserName">@@@(Model.UserName) <span class="fa fa-twitter"></span></a>
         <p>@Model.Description</p>
+        @if (Model.Skills.Any())
+        {
+            <span>Skills:</span>
+            <ul class="skills">
+                @foreach (var skill in Model.Skills)
+                {
+                    <li>@skill.Name</li>
+                }
+            </ul>
+        }
     </div>
 </div>
