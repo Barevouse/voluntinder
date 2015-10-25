@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Device.Location;
 using System.Linq;
 using System.Web.Mvc;
 using ConsoleApplication1;
@@ -28,6 +29,7 @@ namespace Voluntinder.Controllers
             var model = new MatchViewModel();
             var userId = User.Identity.GetUserId();
             var user = DbContext.AspNetUsers.FirstOrDefault(x => x.Id == userId);
+            var userLocation = new GeoCoordinate(user.Latitude.Value, user.Longitude.Value);
             var matches = new List<ProfileViewModel>();
 
             if (!user.IsCharity.Value)
@@ -63,7 +65,8 @@ namespace Voluntinder.Controllers
                             Skills = userSkills,
                             UserId = pair.Id,
                             UserName = pair.UserName,
-                            Location = pair.Location
+                            Location = pair.Location,
+                            Distance = CalculateDistance(userLocation, pair)
 
                         });
                     }
@@ -102,7 +105,8 @@ namespace Voluntinder.Controllers
                             Skills = userSkills,
                             UserId = pair.Id,
                             UserName = pair.UserName,
-                            Location = pair.Location
+                            Location = pair.Location,
+                            Distance = CalculateDistance(userLocation, pair)
                         });
                     }
                 }
@@ -138,6 +142,18 @@ namespace Voluntinder.Controllers
             });
 
             DbContext.SaveChanges();
+        }
+
+        private string CalculateDistance(GeoCoordinate userLocation, AspNetUser aspNetUser)
+        {
+            if (aspNetUser.Longitude.HasValue && aspNetUser.Latitude.HasValue)
+            {
+                var pairedLocation = new GeoCoordinate(aspNetUser.Latitude.Value, aspNetUser.Longitude.Value);
+                var distance = userLocation.GetDistanceTo(pairedLocation) * 0.0016; // metres
+                return string.Format("{0} miles from you", distance.ToString("N0"));
+            }
+
+            return string.Empty;
         }
     }
 }
