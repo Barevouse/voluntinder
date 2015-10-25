@@ -1,14 +1,18 @@
 ﻿@model Voluntinder.Models.ProfileViewModel 
 @{
     ViewBag.Title = Model.UserName + " Profile Page";
-    var handle = "@" + Model.UserName;
+    var showTweets = Model.Tweets.Any();
+    var colNum = showTweets ? 6 : 12;
 }
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-@colNum">
         @Html.Partial("_Profile", Model)
     </div>
-    <div class="col-md-6">
-        @Html.Partial("_Tweets", Model.Tweets)
-    </div>
+    @if (showTweets)
+    {
+        <div class="col-md-@colNum">
+            @Html.Partial("_Tweets", Model.Tweets)
+        </div>
+    }
 </div>

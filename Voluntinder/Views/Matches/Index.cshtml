@@ -8,14 +8,18 @@
 @if (Model.Matches.Any())
 {
     foreach (var match in @Model.Matches)
-     {
-         <p>@match.Name</p>
-         <p>@match.ProfileImage</p>
-         <p>@match.MatchedOn</p>
-         <p>@match.ProfileLink</p>
-
-         <a class="btn btn-default btn-twitter fa fa-twitter" id="Twitter" href="@match.Tweet" target="popup" onclick=" window.open(this.href, 'SendATweet', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=500, height=250'); " data-size="large"> Tweet</a>
-     }
+    {
+        <div class="match col-md-6">
+            <a href="@match.ProfileLink">
+                <img src="@match.ProfileImage" alt="@match.Name" />
+            </a>
+            <div class="details">
+                <span class="name">@match.Name</span>
+                <span class="date">@match.MatchedOn.ToString("ddd, d MMM yyyy")</span>
+                <a class="btn btn-twitter" id="Twitter" href="@match.Tweet" target="popup" onclick=" window.open(this.href, 'Send A Tweet', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=500, height=250'); " data-size="large">Tweet <span class="fa fa-twitter"></span></a>
+            </div>
+        </div>
+    }
 }
 else
 {

@@ -266,6 +266,10 @@ textarea {
     margin-left: -1.5em;
 }
 
+.tweets ul li .date {
+    font-weight: bold;
+}
+
 .navbar li a.navbar-profile {
     padding: 0;
 }

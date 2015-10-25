@@ -7,7 +7,7 @@
         <ul>
             @foreach (var tweet in Model)
             {
-                <li>@tweet.CreatedAt.ToString("ddd, d M yyyy"): @tweet.Text</li>
+                <li><span class="date">@tweet.CreatedAt.ToString("ddd, d M yyyy"):</span> @tweet.Text</li>
             }
         </ul>
     </div>
