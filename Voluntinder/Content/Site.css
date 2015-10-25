@@ -131,17 +131,16 @@ textarea {
     margin: auto;
     margin-top: 20px;
     padding: 0;
-}
-
-.profile, #done {
-    display: none;
     border: 1px solid lightgrey;
     -ms-border-radius: 10px;
     border-radius: 10px;
 }
 
+.profile, #done, #nomatches {
+    display: none;
+}
 
-.profile.current, #done.current {
+.profile.current, #done.current, #nomatches .current {
     display: block;
     -webkit-animation-name: fadeIn;
     -webkit-animation-duration: 1s;

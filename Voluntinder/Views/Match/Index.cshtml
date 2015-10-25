@@ -14,6 +14,9 @@
             </div>
         </div>
     }
+    <div id="nomatches" class="col-md-12">
+        <h4>No matches! Update your skills or try again later for more matches</h4>
+    </div>
     <div id="done" class="col-md-12">
         <h4>Done! Update your skills or try again later for more matches</h4>
     </div>
@@ -32,7 +35,7 @@
         var profiles = $('.profile');
         var currentIndex = 0;
         if (profiles.length == 0) {
-            $('#done').addClass('current');
+            $('#nomatches').addClass('current');
         } else {
             $(profiles[currentIndex]).addClass('current');
         }
