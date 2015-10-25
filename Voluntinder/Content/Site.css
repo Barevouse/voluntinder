@@ -124,6 +124,42 @@ textarea {
   100% { opacity: 1; }
 }
 
+@-webkit-keyframes acceptSlide { 
+  0% { opacity: 1; transform: translateX(0); }
+  20% { opacity: 0.9; transform: translateX(20%); }
+  40% { opacity: 0.5; transform: translateX(40%); }
+  60% { opacity: 0.3; transform: translateX(60%); }
+  80% { opacity: 0; transform: translateX(80%); }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+@keyframes acceptSlide {
+  0% { opacity: 1; transform: translateX(0); }
+  20% { opacity: 0.9; transform: translateX(20%); }
+  40% { opacity: 0.5; transform: translateX(40%); }
+  60% { opacity: 0.3; transform: translateX(60%); }
+  80% { opacity: 0; transform: translateX(80%); }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+@-webkit-keyframes rejectSlide { 
+  0% { opacity: 1; transform: translateX(0); }
+  20% { opacity: 0.9; transform: translateX(-20%); }
+  40% { opacity: 0.5; transform: translateX(-40%); }
+  60% { opacity: 0.3; transform: translateX(-60%); }
+  80% { opacity: 0; transform: translateX(-80%); }
+  100% { opacity: 0; transform: translateX(-100%); }
+}
+
+@keyframes rejectSlide {
+  0% { opacity: 1; transform: translateX(0); }
+  20% { opacity: 0.9; transform: translateX(-20%); }
+  40% { opacity: 0.5; transform: translateX(-40%); }
+  60% { opacity: 0.3; transform: translateX(-60%); }
+  80% { opacity: 0; transform: translateX(-80%); }
+  100% { opacity: 0; transform: translateX(-100%); }
+}
+
 .profile, .tweets {
     max-width: 400px;
     width: 95%;
@@ -145,15 +181,41 @@ textarea {
 .profile.current, #done.current, #nomatches.current, .profile.full, .tweets, .match, .skills {
     display: block;
     -webkit-animation-name: fadeIn;
-    -webkit-animation-duration: 1s;
     -moz-animation-name: fadeIn;
     -ms-animation-name: fadeIn;
     -o-animation-name: fadeIn;
     animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
     -moz-animation-duration: 1s;
     -ms-animation-duration: 1s;
     -o-animation-duration: 1s;
     animation-duration: 1s;
+}
+
+.profile.accept {
+    -webkit-animation-name: fadeIn;
+    -moz-animation-name: fadeIn;
+    -ms-animation-name: fadeIn;
+    -o-animation-name: fadeIn;
+    animation-name: acceptSlide;
+    -webkit-animation-duration: 0.4s;
+    -moz-animation-duration: 0.4s;
+    -ms-animation-duration: 0.4s;
+    -o-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+}
+
+.profile.reject {
+    -webkit-animation-name: fadeIn;
+    -moz-animation-name: fadeIn;
+    -ms-animation-name: fadeIn;
+    -o-animation-name: fadeIn;
+    animation-name: rejectSlide;
+    -webkit-animation-duration: 0.4s;
+    -moz-animation-duration: 0.4s;
+    -ms-animation-duration: 0.4s;
+    -o-animation-duration: 0.4s;
+    animation-duration: 0.4s;
 }
 
 .profile img {
