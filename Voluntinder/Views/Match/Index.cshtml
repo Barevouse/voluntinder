@@ -6,18 +6,21 @@
 <div id="profiles" class="row">
     @for (var index = 0; index < Model.Profile.Count; index++)
     {
+
         var user = Model.Profile[index];
-        <div class="profile" id="user-@index" class="col-md-12">
+        <div id="user-@index" class="profile col-md-12" data-user-id="@user.UserId">
+            <img src="@user.ImageUrl" alt="@user.Name" width="400" height="400" />
             <h2>@user.Name</h2>
+            <h3>@user.UserName</h3>
             <ul>
                 @foreach (var skill in user.Skills)
                 {
                     <li>@skill.Name</li>
                 }
             </ul>
-            <p>@user.ImageUrl</p>
-            <p>@user.Description</p>
-            <p>@user.UserId</p>
+            <div class="more">
+                <p>@user.Description</p>
+            </div>
         </div>
     }
     <div id="done" class="col-md-12">
@@ -27,6 +30,12 @@
 
 @section Scripts
 {
+    <script type="text/javascript">
+        $(document).on("mobileinit", function() {
+            $.mobile.ajaxEnabled = false;
+        });
+    </script>
+
     @Scripts.Render("~/bundles/jquery.mobile")
     @Scripts.Render("~/bundles/iscroll")
 
