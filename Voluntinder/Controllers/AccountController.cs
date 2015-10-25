@@ -383,11 +383,13 @@ namespace Voluntinder.Controllers
                 });
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email,
+                    UserName = profile.ScreenName,
                     Email = model.Email,
+                    Name = profile.Name,
                     Description = profile.Description,
                     Location = profile.Location,
-                    ImageUrl = profile.ProfileImageUrlHttps
+                    ImageUrl = profile.ProfileImageUrlHttps,
+                    IsCharity = model.IsCharity
                 };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)

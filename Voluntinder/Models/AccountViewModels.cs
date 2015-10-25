@@ -8,6 +8,9 @@ namespace Voluntinder.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Display(Name = "Are you a charity")]
+        public bool IsCharity { get; set; }
     }
 
     public class ExternalLoginListViewModel
