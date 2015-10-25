@@ -12,13 +12,12 @@
             </a>
             <div class="details">
                 <span class="name">@user.Name</span>
-                <a class="username" href="//www.twitter.com/@user.UserName">@@@(user.UserName) <span class="fa fa-twitter"></span></a>
-                <p>@user.Distance</p>
+                <a class="username" href="//www.twitter.com/@user.UserName">@@@(user.UserName) <span class="fa fa-fw fa-twitter"></span></a>
             </div>
             <div class="actions">
-                <a class="reject" onclick="rejectProfile()"><span class="fa fa-times"></span></a>
-                <a class="info" href="/Profile?profileId=@user.UserId"><span class="fa fa-info"></span></a>
-                <a class="accept" onclick="acceptProfile()"><span class="fa fa-heart"></span></a>
+                <a class="reject" onclick="rejectProfile()"><span class="fa fa-fw fa-times"></span></a>
+                <a class="info" href="/Profile?profileId=@user.UserId"><span class="fa fa-fw fa-info"></span></a>
+                <a class="accept" onclick="acceptProfile()"><span class="fa fa-fw fa-heart"></span></a>
             </div>
         </div>
     }
