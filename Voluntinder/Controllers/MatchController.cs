@@ -50,7 +50,7 @@ namespace Voluntinder.Controllers
 
             if (!user.IsCharity.Value)
             {
-                var yourSkills = DbContext.skills_list.Where(x => x.UserId == user.Id).ToList();
+                var yourSkills = DbContext.skills_list.Where(x => x.UserId == user.Id);
                 var skills = DbContext.Skills;
                 var userSkills = new List<Skill>();
 
@@ -63,7 +63,7 @@ namespace Voluntinder.Controllers
                 }
 
                 model.PageTitle = "Find a charity";
-                var charities = DbContext.AspNetUsers.Where(x => x.IsCharity == true).ToList();
+                var charities = DbContext.AspNetUsers.Where(x => x.IsCharity == true);
                 var pairings = DbContext.Pairings.Where(y => y.UserId == user.Id);
                 foreach (var pair in charities)
                 {
