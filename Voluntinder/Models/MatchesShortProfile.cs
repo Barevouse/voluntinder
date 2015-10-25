@@ -12,5 +12,6 @@ namespace Voluntinder.Models
         public string ProfileImage { get; set; }
         public string ProfileLink { get; set; }
         public string userId { get; set; }
+        public string Tweet { get; set; }
     }
 }
