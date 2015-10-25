@@ -68,7 +68,7 @@ namespace Voluntinder.Controllers
                 foreach (var pair in charities)
                 {
                     var theirSkills = DbContext.skills_list.Where(x => x.UserId == pair.Id);
-                    if (!pairings.Any(x => x.PairedUser == pair.Id && theirSkills.Select(y=>y.SkillId).Intersect(yourSkills.Select(c=>c.SkillId)).Any()))
+                    if (!pairings.Any(x => x.PairedUser == pair.Id) && theirSkills.Select(y=>y.SkillId).Intersect(yourSkills.Select(c=>c.SkillId)).Any())
                     {
                         matches.Add(new ProfileViewModel
                         {
@@ -86,11 +86,12 @@ namespace Voluntinder.Controllers
             else
             {
                 model.PageTitle = "Find a volunteer";
-                var users = DbContext.AspNetUsers.Where(x => x.IsCharity == false).ToList();
+                var users = DbContext.AspNetUsers.Where(x => x.IsCharity == false);
+                var yourSkills = DbContext.skills_list.Where(x => x.UserId == user.Id);
                 var pairings = DbContext.Pairings.Where(y => y.UserId == user.Id);
                 foreach (var pair in users)
                 {
-                    var skill_list = DbContext.skills_list.Where(x => x.UserId == user.Id).ToList();
+                    var skill_list = DbContext.skills_list.Where(x => x.UserId == user.Id);
                     var skills = DbContext.Skills;
                     var userSkills = new List<Skill>();
 
@@ -101,7 +102,8 @@ namespace Voluntinder.Controllers
                             userSkills.Add(skill);
                         }
                     }
-                    if (!pairings.Any(x => x.PairedUser == pair.Id))
+                    var theirSkills = DbContext.skills_list.Where(x => x.UserId == pair.Id);
+                    if (!pairings.Any(x => x.PairedUser == pair.Id) && theirSkills.Select(y => y.SkillId).Intersect(yourSkills.Select(c => c.SkillId)).Any())
                         matches.Add(new ProfileViewModel
                         {
                             Name = pair.Name,
