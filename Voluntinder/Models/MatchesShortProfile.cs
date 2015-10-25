@@ -10,6 +10,6 @@ namespace Voluntinder.Models
         public string ProfileLink { get; set; }
         public string userId { get; set; }
         public string Tweet { get; set; }
-        public double DistanceFrom { get; set; }
+        public string DistanceFrom { get; set; }
     }
 }
