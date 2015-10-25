@@ -29,7 +29,7 @@ namespace Voluntinder.Controllers
             var userId = User.Identity.GetUserId();
             var user = DbContext.AspNetUsers.FirstOrDefault(x => x.Id == userId);
             var matches = new List<ProfileViewModel>();
-            
+
             if (!user.IsCharity.Value)
             {
                 var yourSkills = DbContext.skills_list.Where(x => x.UserId == user.Id);
@@ -51,7 +51,9 @@ namespace Voluntinder.Controllers
                 foreach (var pair in charities)
                 {
                     var theirSkills = DbContext.skills_list.Where(x => x.UserId == pair.Id);
-                    if (!pairings.Any(x => x.PairedUser == pair.Id) && theirSkills.Select(y=>y.SkillId).Intersect(yourSkills.Select(c=>c.SkillId)).Any())
+                    if (!pairings.Any(x => x.PairedUser == pair.Id) &&
+                        (theirSkills.Select(y => y.SkillId).Intersect(yourSkills.Select(c => c.SkillId)).Any() ||
+                         !theirSkills.Any()))
                     {
                         matches.Add(new ProfileViewModel
                         {
@@ -88,7 +90,10 @@ namespace Voluntinder.Controllers
                         }
                     }
                     var theirSkills = DbContext.skills_list.Where(x => x.UserId == pair.Id);
-                    if (!pairings.Any(x => x.PairedUser == pair.Id) && theirSkills.Select(y => y.SkillId).Intersect(yourSkills.Select(c => c.SkillId)).Any())
+                    if (!pairings.Any(x => x.PairedUser == pair.Id) &&
+                        (theirSkills.Select(y => y.SkillId).Intersect(yourSkills.Select(c => c.SkillId)).Any() ||
+                         !theirSkills.Any()))
+                    {
                         matches.Add(new ProfileViewModel
                         {
                             Name = pair.Name,
@@ -99,12 +104,13 @@ namespace Voluntinder.Controllers
                             UserName = pair.UserName,
                             Location = pair.Location
                         });
+                    }
                 }
             }
 
             model.Profile = matches;
-            return View(model);
-        }
+                return View(model);
+            }
 
         public void Accept(string profileId)
         {
