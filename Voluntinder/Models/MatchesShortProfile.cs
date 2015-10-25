@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Voluntinder.Models
 {
@@ -13,5 +10,6 @@ namespace Voluntinder.Models
         public string ProfileLink { get; set; }
         public string userId { get; set; }
         public string Tweet { get; set; }
+        public double DistanceFrom { get; set; }
     }
 }

@@ -17,6 +17,7 @@
                 <div class="details">
                     <span class="name">@match.Name</span>
                     <span>@match.MatchedOn.ToString("ddd, d MMM yyyy")</span>
+                    <span>@match.DistanceFrom.ToString("N0") miles from you</span>
                 </div>
                 <a class="btn btn-twitter" id="Twitter" href="@match.Tweet" target="popup" onclick=" window.open(this.href, 'Send A Tweet', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=500, height=250'); " data-size="large">Tweet <span class="fa fa-twitter"></span></a>
             </div>

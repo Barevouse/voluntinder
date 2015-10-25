@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Device.Location;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,6 +26,7 @@ namespace Voluntinder.Controllers
         {
             var userId = User.Identity.GetUserId();
             var user = Dbcontext.AspNetUsers.Find(userId);
+            var userLocation = new GeoCoordinate(user.Latitude.Value, user.Longitude.Value);
             var model = new MyMatchesModel();
             var allMyPairing = Dbcontext.Pairings.Where(x => x.UserId == userId).ToList();
             var myPairing = Dbcontext.Pairings.Where(x => x.PairedUser == userId && x.Paired).ToList();
@@ -40,7 +42,8 @@ namespace Voluntinder.Controllers
                             MatchedOn = pairing.MatchedOn.Value,
                             ProfileImage = pairing.AspNetUser.ImageUrl,
                             ProfileLink = "/profile?profileId=" + pairing.PairedUser,
-                            Tweet = "https://twitter.com/intent/tweet?hashtags=Voluntinder&original_referer=https%3A%2F%2Fvoluntinder.azurewebsites.net%2Fweb%2Ftweet-button&ref_src=twsrc%5Etfw&related=%2Ctwitter&text=Looking%20forward%20to%20working%20together&tw_p=tweetbutton&via=" + pairing.AspNetUser.UserName
+                            Tweet = "https://twitter.com/intent/tweet?hashtags=Voluntinder&original_referer=https%3A%2F%2Fvoluntinder.azurewebsites.net%2Fweb%2Ftweet-button&ref_src=twsrc%5Etfw&related=%2Ctwitter&text=Looking%20forward%20to%20working%20together&tw_p=tweetbutton&via=" + pairing.AspNetUser.UserName,
+                            DistanceFrom = CalculateDistance(userLocation, pairing.AspNetUser)
                         });
                     }
                 }
@@ -48,6 +51,12 @@ namespace Voluntinder.Controllers
             model.Matches = matches;
 
             return View(model);
+        }
+
+        private double CalculateDistance(GeoCoordinate userLocation, AspNetUser aspNetUser)
+        {
+            var pairedLocation = new GeoCoordinate(aspNetUser.Latitude.Value, aspNetUser.Longitude.Value);
+            return userLocation.GetDistanceTo(pairedLocation) * 0.0016; // metres
         }
     }
 }
