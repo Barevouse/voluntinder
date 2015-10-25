@@ -7,7 +7,7 @@
     @foreach (var user in Model.Profile)
     {
         <div class="profile col-md-12" data-user-id="@user.UserId">
-            <img src="@user.ImageUrl" alt="@user.Name" width="400" height="400" />
+            <img src="@user.ImageUrl" alt="@user.Name"/>
             <h2>@user.Name</h2>
             <h3>@@@(user.UserName)</h3>
             <ul>
@@ -34,7 +34,7 @@
         });
     </script>
 
-    @Scripts.Render("~/bundles/jquery.mobile")
+    @Scripts.Render("~/bundles/jquerymobile")
     @Scripts.Render("~/bundles/iscroll")
 
     <script type="text/javascript">

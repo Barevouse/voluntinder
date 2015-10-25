@@ -11,7 +11,7 @@ namespace Voluntinder
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery.mobile").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jquerymobile").Include(
                 "~/Scripts/jquery.mobile-{version}.js"));
             
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
