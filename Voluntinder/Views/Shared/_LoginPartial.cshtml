@@ -13,11 +13,13 @@
     @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                <img src="@profile.ImageUrl" alt="@profile.Name" width="36" height="36" style="margin-top: 8px;" />
+            <li class="hidden-xs">
+                <a href="@Url.Action("Index", "Profile", new { profileId = id })" class="navbar-profile">
+                    <img src="@profile.ImageUrl" alt="@profile.Name" />
+                </a>
             </li>
             <li class="hidden-xs">
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
             @if (!ViewContext.RouteData.Values["controller"].ToString().ToLower().Equals("skills"))
             {
