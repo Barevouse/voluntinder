@@ -4,14 +4,12 @@
 }
 
 <div id="profiles" class="row">
-    @for (var index = 0; index < Model.Profile.Count; index++)
+    @foreach (var user in Model.Profile)
     {
-
-        var user = Model.Profile[index];
-        <div id="user-@index" class="profile col-md-12" data-user-id="@user.UserId">
+        <div class="profile col-md-12" data-user-id="@user.UserId">
             <img src="@user.ImageUrl" alt="@user.Name" width="400" height="400" />
             <h2>@user.Name</h2>
-            <h3>@user.UserName</h3>
+            <h3>@@@(user.UserName)</h3>
             <ul>
                 @foreach (var skill in user.Skills)
                 {
@@ -44,6 +42,10 @@
         var currentIndex = 0;
         $(profiles[currentIndex]).addClass('current');
 
+        function showHideMore() {
+            $(profiles[currentIndex]).find('.more').toggleClass("expanded");
+        }
+
         function acceptProfile() {
             moveProfile('accept');
         }
@@ -56,26 +58,23 @@
             $(profiles[currentIndex]).addClass(classToAdd).toggleClass('current');
             $(profiles[currentIndex + 1]).toggleClass('current');
 
-            console.log($(profiles[currentIndex]).data('user-id'));
-
             $.ajax({
                 type: 'POST',
                 url: "/Match/" + classToAdd,
                 data: { 'profileId': $(profiles[currentIndex]).data('user-id') },
-                success: function () { console.log("WIN") },
                 dataType: JSON
-        });
+            });
 
+            currentIndex = currentIndex + 1;
+            if (currentIndex == profiles.length) {
+                $('#done').addClass('current');
 
-        currentIndex = currentIndex + 1;
-        if (currentIndex == profiles.length) {
-            $('#done').addClass('current');
-
-        }
+            }
         }
 
         $(profiles).swipeleft(rejectProfile);
         $(profiles).swiperight(acceptProfile);
+        $(profiles).click(showHideMore);
 
         iscroll = new iScroll('profiles', { hScrollbar: false, vScrollbar: false });
     </script>
