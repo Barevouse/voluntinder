@@ -1,0 +1,8 @@
+﻿@model  IEnumerable<Tweetinvi.Core.Interfaces.ITweet>
+
+<div>
+    @foreach (var tweet in Model)
+    {
+        <p>@tweet.Text</p>
+    }
+</div>

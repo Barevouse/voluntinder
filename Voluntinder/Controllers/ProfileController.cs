@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Runtime.CompilerServices;
+using Tweetinvi;
+using Tweetinvi.Core.Credentials;
 using Tweetinvi.Core.Extensions;
 using Voluntinder.Models;
 using VoluntinderDb;
@@ -34,6 +36,18 @@ namespace Voluntinder.Controllers
 
             skills.ForEach(x => model.Skills.Add(x.Skill));
 
+            var twitterCredentials = new TwitterCredentials("0N5Q3XLB9CyXBaskZGlurmjr4", "2wsz47zbOEQaj8hz2UCkozxFU8BwldpTPqb42I2grRYJWiYseF", "401598968-hM5pvUyjZPcH9J5B32l9u3SjuLoKuybwS2SNxdhA", "FN5HEHob09t75fJJB422KP4MmJMzg2DvKlMgCkhr9HjKV");
+            var profile = Auth.ExecuteOperationWithCredentials(twitterCredentials, () =>
+            {
+                return Tweetinvi.User.GetUserFromScreenName(user.UserName);
+            });
+
+            var tweets = Auth.ExecuteOperationWithCredentials(twitterCredentials, () =>
+            {
+                return profile.GetUserTimeline(10);
+            });
+
+            model.Tweets = tweets;
             return View(model);
         }
 

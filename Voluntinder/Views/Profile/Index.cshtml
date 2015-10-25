@@ -1,8 +1,14 @@
 ﻿@model Voluntinder.Models.ProfileViewModel 
 @{
     ViewBag.Title = Model.UserName + " Profile Page";
+    var handle = "@" + Model.UserName;
 }
 
 <div class="row">
-    @Html.Partial("_Profile", Model)
+    <div class="col-md-8">
+        @Html.Partial("_Profile", Model)
+    </div>
+    <div class="col-md-4">
+        @Html.Partial("_Tweets", Model.Tweets)
+    </div>
 </div>

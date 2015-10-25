@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Tweetinvi.Core.Interfaces;
 using VoluntinderDb;
 
 namespace Voluntinder.Models
@@ -15,5 +16,6 @@ namespace Voluntinder.Models
         public List<Skill> Skills { get; set; }
         public string ImageUrl { get; set; }
         public string UserName { get; set; }
+        public IEnumerable<ITweet> Tweets { get; set; }
     }
 }
