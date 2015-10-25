@@ -8,16 +8,18 @@
     {
         <div class="profile col-md-12" data-user-id="@user.UserId">
             <img src="@user.ImageUrl" alt="@user.Name"/>
-            <h2>@user.Name</h2>
-            <h3>@@@(user.UserName)</h3>
-            <ul>
-                @foreach (var skill in user.Skills)
-                {
-                    <li>@skill.Name</li>
-                }
-            </ul>
-            <div class="more">
-                <p>@user.Description</p>
+            <div class="details">
+                <h2>@user.Name</h2>
+                <h3>@@@(user.UserName)</h3>
+                <ul>
+                    @foreach (var skill in user.Skills)
+                    {
+                        <li>@skill.Name</li>
+                    }
+                </ul>
+                <div class="more">
+                    <p>@user.Description</p>
+                </div>
             </div>
         </div>
     }
