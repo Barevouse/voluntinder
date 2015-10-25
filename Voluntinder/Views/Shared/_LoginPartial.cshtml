@@ -21,6 +21,9 @@
             <li class="hidden-xs">
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
+            <li class="visible-xs">
+                @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
             @if (!ViewContext.RouteData.Values["controller"].ToString().ToLower().Equals("skills"))
             {
                 <li>@Html.ActionLink("Skills", "Index", "Skills")</li>

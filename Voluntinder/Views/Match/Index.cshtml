@@ -6,18 +6,25 @@
 <div id="profiles" class="row">
     @foreach (var user in Model.Profile)
     {
-        <div class="profile col-md-12" data-user-id="@user.UserId">
-            <img src="@user.ImageUrl" alt="@user.Name"/>
+        <div class="profile" data-user-id="@user.UserId">
+            <a class="info" href="/Profile?profileId=@user.UserId">
+                <img src="@user.ImageUrl" alt="@user.Name" />
+            </a>
             <div class="details">
                 <span class="name">@user.Name</span>
                 <a class="username" href="//www.twitter.com/@user.UserName">@@@(user.UserName) <span class="fa fa-twitter"></span></a>
             </div>
+            <div class="actions">
+                <a class="reject" onclick="rejectProfile()"><span class="fa fa-times"></span></a>
+                <a class="info" href="/Profile?profileId=@user.UserId"><span class="fa fa-info"></span></a>
+                <a class="accept" onclick="acceptProfile()"><span class="fa fa-heart"></span></a>
+            </div>
         </div>
     }
-    <div id="nomatches" class="col-md-12">
+    <div id="nomatches">
         <h4>No matches! Update your skills or try again later for more matches</h4>
     </div>
-    <div id="done" class="col-md-12">
+    <div id="done">
         <h4>Done! Update your skills or try again later for more matches</h4>
     </div>
 </div>
