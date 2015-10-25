@@ -14,7 +14,9 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <img src="@profile.ImageUrl" alt="@profile.Name" width="36" height="36" style="margin-top: 8px;" />
+                <a href="@Url.Action("Index", "Profile", new { profileId = id })">
+                <img src="@profile.ImageUrl" alt="@profile.Name" width="36" height="36" style="margin-top: 8px;"/>
+                    </a>
             </li>
             <li class="hidden-xs">
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
