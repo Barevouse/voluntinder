@@ -142,7 +142,7 @@ textarea {
     display: none;
 }
 
-.profile.current, #done.current, #nomatches.current, .profile.full, .tweets {
+.profile.current, #done.current, #nomatches.current, .profile.full, .tweets, .match, .skills {
     display: block;
     -webkit-animation-name: fadeIn;
     -webkit-animation-duration: 1s;
@@ -204,6 +204,7 @@ textarea {
     margin: 2px;
     border: 1px solid #FF7854;
     background-color: #FFBCAA;
+    -ms-border-radius: 5px;
     border-radius: 5px;
 }
 
@@ -217,6 +218,7 @@ textarea {
 .profile .actions a {
     border-style: solid;
     border-color: #D1D1D1;
+    -ms-border-radius: 50%;
     border-radius: 50%;
     margin-left: -5px;
     margin-right: -5px;
@@ -229,7 +231,7 @@ textarea {
 
 .profile .actions a.reject {
     color: #FF7854;
-    padding:0px 8px;
+    padding:0 8px;
     font-size: 50px;
 }
 
@@ -268,6 +270,40 @@ textarea {
 
 .tweets ul li .date {
     font-weight: bold;
+}
+
+.match {
+    overflow: hidden;
+    padding: 10px;
+}
+
+.match img {
+    float: left;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    width: 60px;
+    height: 60px;
+    margin-top: 10px;
+}
+
+.match .details {
+    display: inline-block;
+    padding: 10px;
+    max-width: 175px;
+}
+
+.match .details span {
+    display: block;
+}
+
+.match .details span.name {
+    font-weight: bold;
+}
+
+.match a.btn-twitter {
+    margin-top: 20px;
+    float: right;
 }
 
 .navbar li a.navbar-profile {

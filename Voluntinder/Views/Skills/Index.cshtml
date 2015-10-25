@@ -9,7 +9,7 @@
 </p>
 @using (Html.BeginForm("Save", "Skills", FormMethod.Post))
 {
-    <fieldset>
+    <fieldset class="skills">
         @foreach (var skill in @Model.Skills)
         {
             <div class="checkbox">

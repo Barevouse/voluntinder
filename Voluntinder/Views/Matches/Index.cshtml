@@ -1,27 +1,29 @@
 ﻿@model Voluntinder.Models.MyMatchesModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My matches";
 }
 
 <h2>My Matches</h2>
 
 @if (Model.Matches.Any())
 {
-    foreach (var match in @Model.Matches)
-    {
-        <div class="match col-md-6">
-            <a href="@match.ProfileLink">
-                <img src="@match.ProfileImage" alt="@match.Name" />
-            </a>
-            <div class="details">
-                <span class="name">@match.Name</span>
-                <span class="date">@match.MatchedOn.ToString("ddd, d MMM yyyy")</span>
+    <div class="row">
+        @foreach (var match in @Model.Matches)
+        {
+            <div class="match col-sm-6 col-md-4">
+                <a href="@match.ProfileLink">
+                    <img src="@match.ProfileImage" alt="@match.Name" />
+                </a>
+                <div class="details">
+                    <span class="name">@match.Name</span>
+                    <span>@match.MatchedOn.ToString("ddd, d MMM yyyy")</span>
+                </div>
                 <a class="btn btn-twitter" id="Twitter" href="@match.Tweet" target="popup" onclick=" window.open(this.href, 'Send A Tweet', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=500, height=250'); " data-size="large">Tweet <span class="fa fa-twitter"></span></a>
             </div>
-        </div>
-    }
+        }
+    </div>
 }
 else
 {
-    <h3>No matches yet!</h3>
+    <p>No matches yet! Update your skills list or try again later.</p>
 }
