@@ -56,10 +56,22 @@
             $(profiles[currentIndex]).addClass(classToAdd).toggleClass('current');
             $(profiles[currentIndex + 1]).toggleClass('current');
 
-            currentIndex = currentIndex + 1;
-            if (currentIndex == profiles.length) {
-                $('#done').addClass('current');
-            }
+            console.log($(profiles[currentIndex]).data('user-id'));
+
+            $.ajax({
+                type: 'POST',
+                url: "/Match/" + classToAdd,
+                data: { 'profileId': $(profiles[currentIndex]).data('user-id') },
+                success: function () { console.log("WIN") },
+                dataType: JSON
+        });
+
+
+        currentIndex = currentIndex + 1;
+        if (currentIndex == profiles.length) {
+            $('#done').addClass('current');
+
+        }
         }
 
         $(profiles).swipeleft(rejectProfile);
