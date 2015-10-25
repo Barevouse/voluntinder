@@ -99,13 +99,13 @@ namespace Voluntinder.Controllers
             return View(model);
         }
 
-        public void Accept(string pairId)
+        public void Accept(string profileId)
         {
             var userId = User.Identity.GetUserId();
             DbContext.Pairings.Add(new Pairing
             {
                 UserId = userId,
-                PairedUser = pairId,
+                PairedUser = profileId,
                 Paired = true,
                 MatchedOn = DateTime.Now
             });
@@ -113,13 +113,13 @@ namespace Voluntinder.Controllers
             DbContext.SaveChanges();
         }
 
-        public void Reject(string pairId)
+        public void Reject(string profileId)
         {
             var userId = User.Identity.GetUserId();
             DbContext.Pairings.Add(new Pairing
             {
                 UserId = userId,
-                PairedUser = pairId,
+                PairedUser = profileId,
                 Paired = false,
                 MatchedOn = DateTime.Now
             });
