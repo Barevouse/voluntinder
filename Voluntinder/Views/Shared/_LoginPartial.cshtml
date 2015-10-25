@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="hidden-xs">
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Profile", routeValues: new { profileId = id }, htmlAttributes: new { title = "View Profile" })
             </li>
             <li class="visible-xs">
                 @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
