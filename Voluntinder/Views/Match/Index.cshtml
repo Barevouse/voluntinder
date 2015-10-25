@@ -8,16 +8,18 @@
     {
         <div class="profile col-md-12" data-user-id="@user.UserId">
             <img src="@user.ImageUrl" alt="@user.Name"/>
-            <h2>@user.Name</h2>
-            <h3>@@@(user.UserName)</h3>
-            <ul>
-                @foreach (var skill in user.Skills)
-                {
-                    <li>@skill.Name</li>
-                }
-            </ul>
-            <div class="more">
-                <p>@user.Description</p>
+            <div class="details">
+                <h2>@user.Name</h2>
+                <h3>@@@(user.UserName)</h3>
+                <ul>
+                    @foreach (var skill in user.Skills)
+                    {
+                        <li>@skill.Name</li>
+                    }
+                </ul>
+                <div class="more">
+                    <p>@user.Description</p>
+                </div>
             </div>
         </div>
     }
@@ -26,24 +28,26 @@
     </div>
 </div>
 
-@section Scripts
-{
+@section Scripts {
     <script type="text/javascript">
-        $(document).on("mobileinit", function() {
+        $(document).on("mobileinit", function () {
             $.mobile.ajaxEnabled = false;
+            $.mobile.loading().hide();
         });
     </script>
-
     @Scripts.Render("~/bundles/jquerymobile")
-    @Scripts.Render("~/bundles/iscroll")
-
+    
     <script type="text/javascript">
         var profiles = $('.profile');
         var currentIndex = 0;
-        $(profiles[currentIndex]).addClass('current');
+        if (profiles.length == 0) {
+            $('#done').addClass('current');
+        } else {
+            $(profiles[currentIndex]).addClass('current');
+        }
 
         function showHideMore() {
-            $(profiles[currentIndex]).find('.more').toggleClass("expanded");
+            $(profiles[currentIndex]).find('.more').addClass("expanded");
         }
 
         function acceptProfile() {
@@ -75,7 +79,5 @@
         $(profiles).swipeleft(rejectProfile);
         $(profiles).swiperight(acceptProfile);
         $(profiles).click(showHideMore);
-
-        iscroll = new iScroll('profiles', { hScrollbar: false, vScrollbar: false });
     </script>
 }

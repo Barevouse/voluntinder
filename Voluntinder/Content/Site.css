@@ -34,6 +34,10 @@ h1, h2, h3, h4, h5, h6 {
     padding-right: 15px;
 }
 
+.body-content:focus {
+    outline: 0;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -144,7 +148,16 @@ textarea {
 
 .profile, #done {
     display: none;
+    max-width: 400px;
+    width: 95%;
+    margin: auto;
+    margin-top: 20px;
+    border: 1px solid lightgrey;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    padding: 0;
 }
+
 
 .profile.current, #done.current {
     display: block;
@@ -161,18 +174,32 @@ textarea {
 }
 
 .profile img {
+    -ms-border-top-left-radius: 10px;
+    border-top-left-radius: 10px;
+    -ms-border-top-right-radius: 10px;
+    border-top-right-radius: 10px;
     max-width: 400px;
     width: 100%;
     max-height: 400px;
     height: 100%;
 }
 
-.profile .more {
-    display: none;
+.profile .details {
+    padding: 10px;
 }
 
-.profile .more.expanded {
-    display: block;
+.profile .details .more {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+
+.profile .details .more.expanded {
+    opacity: 1;
+    transform: translateY(0);
     -webkit-animation-name: slideDown;
     -webkit-animation-duration: 1s;
     -moz-animation-name: slideDown;
@@ -183,4 +210,14 @@ textarea {
     -ms-animation-duration: 1s;
     -o-animation-duration: 1s;
     animation-duration: 1s;
+}
+
+.navbar li a.navbar-profile {
+    padding: 0;
+}
+
+.navbar li a.navbar-profile img {
+    width: 36px;
+    height: 36px;
+    margin-top: 8px;
 }

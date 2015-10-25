@@ -11,5 +11,6 @@ namespace Voluntinder.Models
         public DateTime MatchedOn { get; set; }
         public string ProfileImage { get; set; }
         public string ProfileLink { get; set; }
+        public string userId { get; set; }
     }
 }

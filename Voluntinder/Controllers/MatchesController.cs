@@ -26,25 +26,22 @@ namespace Voluntinder.Controllers
             var user = User.Identity.GetUserId();
             var model = new MyMatchesModel();
             var allMyPairing = Dbcontext.Pairings.Where(x => x.UserId == user).ToList();
-            var MyPairing = Dbcontext.Pairings.Where(x => x.PairedUser == user).ToList();
+            var myPairing = Dbcontext.Pairings.Where(x => x.PairedUser == user && x.Paired).ToList();
             var matches = new List<MatchesShortProfile>();
 
             foreach (var pairing in allMyPairing)
-            {
-                foreach (var othersPairs in MyPairing)
-                {
-                    if (pairing.UserId == othersPairs.PairedUser && othersPairs.UserId == pairing.PairedUser && pairing.Paired && othersPairs.Paired)
+            {                    
+                if(myPairing.Any(x=>x.UserId == pairing.PairedUser) && pairing.Paired)
                     {
                         matches.Add(new MatchesShortProfile
                         {
-                            Name = othersPairs.AspNetUser.Name,
-                            MatchedOn = othersPairs.MatchedOn > pairing.MatchedOn ? othersPairs.MatchedOn.Value : pairing.MatchedOn.Value,
-                            ProfileImage = othersPairs.AspNetUser.ImageUrl,
-                            ProfileLink = "/profile?profileId=" + othersPairs.PairedUser
+                            Name = pairing.AspNetUser.Name,
+                            MatchedOn = pairing.MatchedOn.Value,
+                            ProfileImage = pairing.AspNetUser.ImageUrl,
+                            ProfileLink = "/profile?profileId=" + pairing.PairedUser
                         });
                     }
                 }
-            }
 
             model.Matches = matches;
 
