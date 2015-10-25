@@ -249,6 +249,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MatchesController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\SkillsController.cs" />
@@ -259,7 +260,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MatchesShortProfile.cs" />
     <Compile Include="Models\MatchViewModel.cs" />
+    <Compile Include="Models\MyMatchesModel.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\SkillModels.cs" />
     <Compile Include="Models\SkillsWithUser.cs" />
@@ -345,6 +348,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\_Profile.cshtml" />
     <Content Include="Views\Match\Index.cshtml" />
+    <Content Include="Views\Matches\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
