@@ -40,7 +40,7 @@ namespace Voluntinder.Controllers
                             MatchedOn = pairing.MatchedOn.Value,
                             ProfileImage = pairing.AspNetUser.ImageUrl,
                             ProfileLink = "/profile?profileId=" + pairing.PairedUser,
-                            Tweet = "https://twitter.com/intent/tweet?text=Looking%forward%to%working%together%@" + pairing.AspNetUser.UserName + "%@"+user.UserName + "%#Voluntinder"
+                            Tweet = "https://twitter.com/intent/tweet?hashtags=Voluntinder&original_referer=https%3A%2F%2Fvoluntinder.azurewebsites.net%2Fweb%2Ftweet-button&ref_src=twsrc%5Etfw&related=%2Ctwitter&text=Looking%20forward%20to%20working%20together&tw_p=tweetbutton&via=" + pairing.AspNetUser.UserName
                         });
                     }
                 }
