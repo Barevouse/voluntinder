@@ -13,6 +13,8 @@ namespace Voluntinder.Models
         public string ImageUrl { get; set; }
         public string Description { get; set; }
         public bool IsCharity { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
