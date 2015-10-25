@@ -8,7 +8,7 @@ namespace Voluntinder.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Match");
+                return RedirectToAction("Index", "Profile");
             }
             return View();
         }
