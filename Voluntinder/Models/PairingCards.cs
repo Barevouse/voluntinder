@@ -13,5 +13,6 @@ namespace Voluntinder.Models
         public string Name { get; set; }
         public List<Skill> Skills { get; set; }
         public string ImageUrl { get; set; }
+        public string UserName { get; set; }
     }
 }

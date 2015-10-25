@@ -56,7 +56,8 @@ namespace Voluntinder.Controllers
                             Description = pair.Description,
                             ImageUrl = pair.ImageUrl,
                             Skills = userSkills,
-                            UserId = pair.Id
+                            UserId = pair.Id,
+                            UserName = pair.UserName
 
                         });
                     }
@@ -87,8 +88,8 @@ namespace Voluntinder.Controllers
                             Description = pair.Description,
                             ImageUrl = pair.ImageUrl,
                             Skills = userSkills,
-                            UserId = pair.Id
-
+                            UserId = pair.Id,
+                            UserName = pair.UserName
                         });
                 }
             }
