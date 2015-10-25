@@ -62,21 +62,24 @@
         }
 
         function moveProfile(classToAdd) {
-            $(profiles[currentIndex]).addClass(classToAdd).toggleClass('current');
-            $(profiles[currentIndex + 1]).toggleClass('current');
+            $(profiles[currentIndex]).addClass(classToAdd).delay(400).queue(function (next) {
+                $(profiles[currentIndex]).removeClass(classToAdd).toggleClass('current');
+                $(profiles[currentIndex + 1]).toggleClass('current');
 
-            $.ajax({
-                type: 'POST',
-                url: "/Match/" + classToAdd,
-                data: { 'profileId': $(profiles[currentIndex]).data('user-id') },
-                dataType: JSON
+                $.ajax({
+                    type: 'POST',
+                    url: "/Match/" + classToAdd,
+                    data: { 'profileId': $(profiles[currentIndex]).data('user-id') },
+                    dataType: JSON
+                });
+
+                currentIndex = currentIndex + 1;
+                if (currentIndex == profiles.length) {
+                    $('#done').addClass('current');
+                }
+
+                next();
             });
-
-            currentIndex = currentIndex + 1;
-            if (currentIndex == profiles.length) {
-                $('#done').addClass('current');
-
-            }
         }
 
         $(profiles).swipeleft(rejectProfile);
