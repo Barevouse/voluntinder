@@ -102,12 +102,69 @@ textarea {
     background-color: #4099FF;
 }
 
+@-webkit-keyframes fadeIn { 
+  0% { opacity: 0; }
+  20% { opacity: 0; }
+  40% { opacity: 0.3; }
+  60% { opacity: 0.5; }
+  80% { opacity: 0.9; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  20% { opacity: 0; }
+  40% { opacity: 0.3; }
+  60% { opacity: 0.5; }
+  80% { opacity: 0.9; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes slideDown{
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown{
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .profile, #done {
     display: none;
 }
 
 .profile.current, #done.current {
     display: block;
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
+    -moz-animation-name: fadeIn;
+    -ms-animation-name: fadeIn;
+    -o-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -moz-animation-duration: 1s;
+    -ms-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+.profile img {
+    max-width: 400px;
+    width: 100%;
+    max-height: 400px;
+    height: 100%;
 }
 
 .profile .more {
@@ -116,4 +173,14 @@ textarea {
 
 .profile .more.expanded {
     display: block;
+    -webkit-animation-name: slideDown;
+    -webkit-animation-duration: 1s;
+    -moz-animation-name: slideDown;
+    -ms-animation-name: slideDown;
+    -o-animation-name: slideDown;
+    animation-name: slideDown;
+    -moz-animation-duration: 1s;
+    -ms-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
 }
