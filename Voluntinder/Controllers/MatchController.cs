@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -98,27 +99,29 @@ namespace Voluntinder.Controllers
             return View(model);
         }
 
-        public void Accept(string profileId)
+        public void Accept(string pairId)
         {
             var userId = User.Identity.GetUserId();
             DbContext.Pairings.Add(new Pairing
             {
                 UserId = userId,
-                PairedUser = profileId,
-                Paired = true
+                PairedUser = pairId,
+                Paired = true,
+                MatchedOn = DateTime.Now
             });
 
             DbContext.SaveChanges();
         }
 
-        public void Reject(string profileId)
+        public void Reject(string pairId)
         {
             var userId = User.Identity.GetUserId();
             DbContext.Pairings.Add(new Pairing
             {
                 UserId = userId,
-                PairedUser = profileId,
-                Paired = false
+                PairedUser = pairId,
+                Paired = false,
+                MatchedOn = DateTime.Now
             });
 
             DbContext.SaveChanges();

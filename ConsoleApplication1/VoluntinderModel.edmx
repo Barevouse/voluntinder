@@ -79,6 +79,7 @@
           <Property Name="PairedUser" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Paired" Type="bit" Nullable="false" />
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatchedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="Skill">
           <Key>
@@ -435,6 +436,7 @@
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="AspNetUser" Relationship="voluntinder_dbModel.FK__Pairing__PairedU__4E88ABD4" FromRole="Pairing" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUser1" Relationship="voluntinder_dbModel.FK__Pairing__UserId__4D94879B" FromRole="Pairing" ToRole="AspNetUser" />
+          <Property Name="MatchedOn" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__Pairing__PairedU__4E88ABD4">
           <End Type="voluntinder_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -554,6 +556,7 @@
           <EntitySetMapping Name="Pairings">
             <EntityTypeMapping TypeName="voluntinder_dbModel.Pairing">
               <MappingFragment StoreEntitySet="Pairing">
+                <ScalarProperty Name="MatchedOn" ColumnName="MatchedOn" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Paired" ColumnName="Paired" />
                 <ScalarProperty Name="PairedUser" ColumnName="PairedUser" />
