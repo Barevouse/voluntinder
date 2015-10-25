@@ -144,6 +144,10 @@ textarea {
 
 .profile, #done {
     display: none;
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .profile.current, #done.current {
@@ -189,4 +193,14 @@ textarea {
     -ms-animation-duration: 1s;
     -o-animation-duration: 1s;
     animation-duration: 1s;
+}
+
+.navbar li a.navbar-profile {
+    padding: 0;
+}
+
+.navbar li a.navbar-profile img {
+    width: 36px;
+    height: 36px;
+    margin-top: 8px;
 }
