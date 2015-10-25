@@ -17,5 +17,6 @@ namespace Voluntinder.Models
         public string ImageUrl { get; set; }
         public string UserName { get; set; }
         public IEnumerable<ITweet> Tweets { get; set; }
+        public string Location { get; set; }
     }
 }

@@ -29,25 +29,7 @@ namespace Voluntinder.Controllers
             var userId = User.Identity.GetUserId();
             var user = DbContext.AspNetUsers.FirstOrDefault(x => x.Id == userId);
             var matches = new List<ProfileViewModel>();
-            //var allUsers = DbContext.AspNetUsers;
-            //var userSkills = DbContext.skills_list.Where(x => x.UserId == user.Id);
-            //var allSkills = DbContext.skills_list;
-
-            //if (user.IsCharity.Value)
-            //{
-            //    var charityMatches = DbContext.Pairings.Where(x => x.UserId == user.Id).Select(y => y.AspNetUser1); //Get those liked
-
-            //    var matchedSkills = userSkills.Intersect(allSkills); //Only users with matched skills
-
-            //    var matchedUsers = matchedSkills.Select(x => x.AspNetUser).Distinct(); //Get all distinct users with matched skills
-
-
-            //    var unLiked = allUsers.Except(charityMatches);
-
-            //    var unLikedWithMatchedSkills = unLiked.Intersect(matchedUsers);
-
-            //}
-
+            
             if (!user.IsCharity.Value)
             {
                 var yourSkills = DbContext.skills_list.Where(x => x.UserId == user.Id);
@@ -63,6 +45,7 @@ namespace Voluntinder.Controllers
                 }
 
                 model.PageTitle = "Find a charity";
+                model.UserLocation = user.Location;
                 var charities = DbContext.AspNetUsers.Where(x => x.IsCharity == true);
                 var pairings = DbContext.Pairings.Where(y => y.UserId == user.Id);
                 foreach (var pair in charities)
@@ -77,7 +60,8 @@ namespace Voluntinder.Controllers
                             ImageUrl = pair.ImageUrl,
                             Skills = userSkills,
                             UserId = pair.Id,
-                            UserName = pair.UserName
+                            UserName = pair.UserName,
+                            Location = pair.Location
 
                         });
                     }
@@ -86,6 +70,7 @@ namespace Voluntinder.Controllers
             else
             {
                 model.PageTitle = "Find a volunteer";
+                model.UserLocation = user.Location;
                 var users = DbContext.AspNetUsers.Where(x => x.IsCharity == false);
                 var yourSkills = DbContext.skills_list.Where(x => x.UserId == user.Id);
                 var pairings = DbContext.Pairings.Where(y => y.UserId == user.Id);
@@ -111,7 +96,8 @@ namespace Voluntinder.Controllers
                             ImageUrl = pair.ImageUrl,
                             Skills = userSkills,
                             UserId = pair.Id,
-                            UserName = pair.UserName
+                            UserName = pair.UserName,
+                            Location = pair.Location
                         });
                 }
             }
