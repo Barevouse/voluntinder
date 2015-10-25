@@ -124,38 +124,20 @@ textarea {
   100% { opacity: 1; }
 }
 
-@-webkit-keyframes slideDown{
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideDown{
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.profile, #done {
-    display: none;
+.profile {
+    cursor: pointer;
     max-width: 400px;
     width: 95%;
     margin: auto;
     margin-top: 20px;
+    padding: 0;
+}
+
+.profile, #done {
+    display: none;
     border: 1px solid lightgrey;
     -ms-border-radius: 10px;
     border-radius: 10px;
-    padding: 0;
 }
 
 
@@ -186,30 +168,19 @@ textarea {
 
 .profile .details {
     padding: 10px;
+    overflow: hidden;
 }
 
-.profile .details .more {
-    opacity: 0;
-    -webkit-transform: translateY(-100%);
-    -moz-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    -o-transform: translateY(-100%);
-    transform: translateY(-100%);
+.profile .details .name {
+    font-size: 24px;
+    font-weight: bold;
+    float: left;
 }
 
-.profile .details .more.expanded {
-    opacity: 1;
-    transform: translateY(0);
-    -webkit-animation-name: slideDown;
-    -webkit-animation-duration: 1s;
-    -moz-animation-name: slideDown;
-    -ms-animation-name: slideDown;
-    -o-animation-name: slideDown;
-    animation-name: slideDown;
-    -moz-animation-duration: 1s;
-    -ms-animation-duration: 1s;
-    -o-animation-duration: 1s;
-    animation-duration: 1s;
+.profile .details .username {
+    font-size: 18px;
+    float: right;
+    padding-top: 10px;
 }
 
 .navbar li a.navbar-profile {
