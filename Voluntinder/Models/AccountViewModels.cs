@@ -5,10 +5,6 @@ namespace Voluntinder.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
         [Display(Name = "Are you a charity")]
         public bool IsCharity { get; set; }
     }
@@ -51,7 +47,6 @@ namespace Voluntinder.Models
 
     public class LoginViewModel
     {
-        [Required]
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
@@ -71,7 +66,6 @@ namespace Voluntinder.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
 
-        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
