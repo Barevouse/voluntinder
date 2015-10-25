@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Voluntinder.Models;
 using VoluntinderDb;
-using RedirectToRouteResult = System.Web.Http.Results.RedirectToRouteResult;
 
 namespace Voluntinder.Controllers
 {
@@ -26,6 +22,11 @@ namespace Voluntinder.Controllers
         {
             var userId = User.Identity.GetUserId();
             var user = Dbcontext.AspNetUsers.Find(userId);
+            if (!user.Latitude.HasValue || !user.Longitude.HasValue)
+            {
+                user.Latitude = 0;
+                user.Longitude = 0;
+            }
             var userLocation = new GeoCoordinate(user.Latitude.Value, user.Longitude.Value);
             var model = new MyMatchesModel();
             var allMyPairing = Dbcontext.Pairings.Where(x => x.UserId == userId).ToList();
@@ -53,10 +54,16 @@ namespace Voluntinder.Controllers
             return View(model);
         }
 
-        private double CalculateDistance(GeoCoordinate userLocation, AspNetUser aspNetUser)
+        private string CalculateDistance(GeoCoordinate userLocation, AspNetUser aspNetUser)
         {
-            var pairedLocation = new GeoCoordinate(aspNetUser.Latitude.Value, aspNetUser.Longitude.Value);
-            return userLocation.GetDistanceTo(pairedLocation) * 0.0016; // metres
+            if (aspNetUser.Longitude.HasValue && aspNetUser.Latitude.HasValue)
+            {
+                var pairedLocation = new GeoCoordinate(aspNetUser.Latitude.Value, aspNetUser.Longitude.Value);
+                var distance = userLocation.GetDistanceTo(pairedLocation)*0.0016; // metres
+                return string.Format("{0} miles from you", distance.ToString("N0"));
+            }
+
+            return string.Empty;
         }
     }
 }
