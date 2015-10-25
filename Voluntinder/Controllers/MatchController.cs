@@ -96,7 +96,32 @@ namespace Voluntinder.Controllers
 
             model.Pairing = matches;
             return View(model);
+        }
 
+        public void Accept(string pairId)
+        {
+            var userId = User.Identity.GetUserId();
+            DbContext.Pairings.Add(new Pairing
+            {
+                UserId = userId,
+                PairedUser = pairId,
+                Paired = true
+            });
+
+            DbContext.SaveChanges();
+        }
+
+        public void Reject(string pairId)
+        {
+            var userId = User.Identity.GetUserId();
+            DbContext.Pairings.Add(new Pairing
+            {
+                UserId = userId,
+                PairedUser = pairId,
+                Paired = false
+            });
+
+            DbContext.SaveChanges();
         }
     }
 }
