@@ -174,12 +174,6 @@ namespace Voluntinder.Controllers
             return View(model);
         }
 
-        [AllowAnonymous]
-        public ActionResult RegisterCharity()
-        {
-            return View();
-        }
-
         //
                 // GET: /Account/ConfirmEmail
             [

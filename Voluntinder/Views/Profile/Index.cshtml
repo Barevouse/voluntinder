@@ -1,0 +1,8 @@
+﻿@model Voluntinder.Models.ProfileViewModel 
+@{
+    ViewBag.Title = Model.UserName + " Profile Page";
+}
+
+<div class="row">
+    @Html.Partial("_Profile", Model)
+</div>
