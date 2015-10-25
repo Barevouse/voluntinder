@@ -1,25 +1,36 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Microsoft.Owin.Security
+@using VoluntinderDb
 @if (Request.IsAuthenticated)
 {
+
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
+        voluntinder_dbEntities DbContext = new voluntinder_dbEntities();
+        var id = User.Identity.GetUserId();
+        var profile = DbContext.AspNetUsers.FirstOrDefault(x => x.Id == id);
+        
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li class="hidden-xs">
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        @if (!ViewContext.RouteData.Values["controller"].ToString().ToLower().Equals("skills"))
-        {
-            <li>@Html.ActionLink("Skills", "Index", "Skills")</li>
-        }
-        @if (!ViewContext.RouteData.Values["controller"].ToString().ToLower().Equals("match"))
-        {
-            <li>@Html.ActionLink("Find", "Index", "Profile")</li>
-        }
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="@Url.Action("Index", "Profile", new { profileId = id })">
+                <img src="@profile.ImageUrl" alt="@profile.Name" width="36" height="36" style="margin-top: 8px;"/>
+                    </a>
+            </li>
+            <li class="hidden-xs">
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
+            </li>
+            @if (!ViewContext.RouteData.Values["controller"].ToString().ToLower().Equals("skills"))
+            {
+                <li>@Html.ActionLink("Skills", "Index", "Skills")</li>
+            }
+            @if (!ViewContext.RouteData.Values["controller"].ToString().ToLower().Equals("match"))
+            {
+                <li>@Html.ActionLink("Find", "Index", "Match")</li>
+            }
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+        </ul>
     }
 }
 else
