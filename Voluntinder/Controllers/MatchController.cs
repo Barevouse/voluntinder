@@ -27,7 +27,7 @@ namespace Voluntinder.Controllers
             var model = new MatchViewModel();
             var userId = User.Identity.GetUserId();
             var user = DbContext.AspNetUsers.FirstOrDefault(x => x.Id == userId);
-            var matches = new List<PairingCards>();
+            var matches = new List<ProfileViewModel>();
 
             if (user.IsCharity == false)
             {
@@ -50,7 +50,7 @@ namespace Voluntinder.Controllers
                 {
                     if (!pairings.Any(x => x.PairedUser == pair.Id))
                     {
-                        matches.Add(new PairingCards
+                        matches.Add(new ProfileViewModel
                         {
                             Name = pair.Name,
                             Description = pair.Description,
@@ -82,7 +82,7 @@ namespace Voluntinder.Controllers
                         }
                     }
                     if (!pairings.Any(x => x.PairedUser == pair.Id))
-                        matches.Add(new PairingCards
+                        matches.Add(new ProfileViewModel
                         {
                             Name = pair.Name,
                             Description = pair.Description,
@@ -94,9 +94,34 @@ namespace Voluntinder.Controllers
                 }
             }
 
-            model.Pairing = matches;
+            model.Profile = matches;
             return View(model);
+        }
 
+        public void Accept(string profileId)
+        {
+            var userId = User.Identity.GetUserId();
+            DbContext.Pairings.Add(new Pairing
+            {
+                UserId = userId,
+                PairedUser = profileId,
+                Paired = true
+            });
+
+            DbContext.SaveChanges();
+        }
+
+        public void Reject(string profileId)
+        {
+            var userId = User.Identity.GetUserId();
+            DbContext.Pairings.Add(new Pairing
+            {
+                UserId = userId,
+                PairedUser = profileId,
+                Paired = false
+            });
+
+            DbContext.SaveChanges();
         }
     }
 }

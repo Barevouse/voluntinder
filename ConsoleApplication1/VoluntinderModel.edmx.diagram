@@ -17,10 +17,10 @@
         <AssociationConnector Association="voluntinder_dbModel.FK__skills_li__UserI__3C69FB99" />
         <EntityTypeShape EntityType="voluntinder_dbModel.Skill" Width="1.5" PointX="6.375" PointY="7" />
         <AssociationConnector Association="voluntinder_dbModel.FK__skills_li__Skill__49C3F6B7" />
-        <EntityTypeShape EntityType="voluntinder_dbModel.Pairing" Width="1.5" PointX="2.125" PointY="9.625" />
+        <EntityTypeShape EntityType="voluntinder_dbModel.Pairing" Width="1.5" PointX="3" PointY="9.375" />
         <AssociationConnector Association="voluntinder_dbModel.FK__Pairing__PairedU__4E88ABD4" />
         <AssociationConnector Association="voluntinder_dbModel.FK__Pairing__UserId__4D94879B" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

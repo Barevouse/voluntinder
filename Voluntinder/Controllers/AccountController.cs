@@ -387,7 +387,7 @@ namespace Voluntinder.Controllers
                     Name = profile.Name,
                     Description = profile.Description,
                     Location = profile.Location,
-                    ImageUrl = profile.ProfileImageUrlHttps,
+                    ImageUrl = profile.ProfileImageUrlFullSize,
                     IsCharity = model.IsCharity
                 };
                 var result = await UserManager.CreateAsync(user);

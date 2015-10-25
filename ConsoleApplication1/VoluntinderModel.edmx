@@ -71,19 +71,14 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Location" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'voluntinder_db.dbo.Pairing' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Pairing">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="PairedUser" />
-            <PropertyRef Name="Paired" />
           </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="PairedUser" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Paired" Type="bit" Nullable="false" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Skill">
           <Key>
@@ -211,16 +206,9 @@ warning 6002: The table/view 'voluntinder_db.dbo.Pairing' does not have a primar
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pairing" EntityType="Self.Pairing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="skills_list" EntityType="Self.skills_list" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Pairing" EntityType="Self.Pairing" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Pairing].[Id] AS [Id], 
-    [Pairing].[UserId] AS [UserId], 
-    [Pairing].[PairedUser] AS [PairedUser], 
-    [Pairing].[Paired] AS [Paired]
-    FROM [dbo].[Pairing] AS [Pairing]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__Pairing__PairedU__4E88ABD4" Association="Self.FK__Pairing__PairedU__4E88ABD4">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Pairing" EntitySet="Pairing" />
@@ -318,12 +306,12 @@ warning 6002: The table/view 'voluntinder_db.dbo.Pairing' does not have a primar
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="skills_list" Relationship="voluntinder_dbModel.FK__skills_li__UserI__3C69FB99" FromRole="AspNetUser" ToRole="skills_list" />
-          <NavigationProperty Name="Pairings" Relationship="voluntinder_dbModel.FK__Pairing__PairedU__4E88ABD4" FromRole="AspNetUser" ToRole="Pairing" />
-          <NavigationProperty Name="Pairings1" Relationship="voluntinder_dbModel.FK__Pairing__UserId__4D94879B" FromRole="AspNetUser" ToRole="Pairing" />
           <Property Name="IsCharity" Type="Boolean" />
           <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pairings" Relationship="voluntinder_dbModel.FK__Pairing__PairedU__4E88ABD4" FromRole="AspNetUser" ToRole="Pairing" />
+          <NavigationProperty Name="Pairings1" Relationship="voluntinder_dbModel.FK__Pairing__UserId__4D94879B" FromRole="AspNetUser" ToRole="Pairing" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -394,7 +382,7 @@ warning 6002: The table/view 'voluntinder_db.dbo.Pairing' does not have a primar
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Pairing" EntitySet="Pairings" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="skills_list">
           <Key>
             <PropertyRef Name="Id" />
@@ -440,14 +428,11 @@ warning 6002: The table/view 'voluntinder_db.dbo.Pairing' does not have a primar
         <EntityType Name="Pairing">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="PairedUser" />
-            <PropertyRef Name="Paired" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="PairedUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Paired" Type="Boolean" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="AspNetUser" Relationship="voluntinder_dbModel.FK__Pairing__PairedU__4E88ABD4" FromRole="Pairing" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUser1" Relationship="voluntinder_dbModel.FK__Pairing__UserId__4D94879B" FromRole="Pairing" ToRole="AspNetUser" />
         </EntityType>
@@ -475,7 +460,7 @@ warning 6002: The table/view 'voluntinder_db.dbo.Pairing' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -569,10 +554,10 @@ warning 6002: The table/view 'voluntinder_db.dbo.Pairing' does not have a primar
           <EntitySetMapping Name="Pairings">
             <EntityTypeMapping TypeName="voluntinder_dbModel.Pairing">
               <MappingFragment StoreEntitySet="Pairing">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Paired" ColumnName="Paired" />
                 <ScalarProperty Name="PairedUser" ColumnName="PairedUser" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

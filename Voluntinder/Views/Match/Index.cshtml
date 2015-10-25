@@ -4,7 +4,7 @@
 }
 
 <div id="profiles" class="row">
-    @foreach (var user in Model.Pairing)
+    @foreach (var user in Model.Profile)
     {
         <div class="profile col-md-12" data-user-id="@user.UserId">
             <img src="@user.ImageUrl" alt="@user.Name" width="400" height="400" />
@@ -58,9 +58,17 @@
             $(profiles[currentIndex]).addClass(classToAdd).toggleClass('current');
             $(profiles[currentIndex + 1]).toggleClass('current');
 
+            $.ajax({
+                type: 'POST',
+                url: "/Match/" + classToAdd,
+                data: { 'profileId': $(profiles[currentIndex]).data('user-id') },
+                dataType: JSON
+            });
+
             currentIndex = currentIndex + 1;
             if (currentIndex == profiles.length) {
                 $('#done').addClass('current');
+
             }
         }
 

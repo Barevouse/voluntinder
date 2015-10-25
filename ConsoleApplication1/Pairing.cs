@@ -14,10 +14,10 @@ namespace VoluntinderDb
     
     public partial class Pairing
     {
-        public long Id { get; set; }
         public string UserId { get; set; }
         public string PairedUser { get; set; }
         public bool Paired { get; set; }
+        public long Id { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual AspNetUser AspNetUser1 { get; set; }
