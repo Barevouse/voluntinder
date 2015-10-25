@@ -9,6 +9,6 @@ namespace Voluntinder.Models
     public class MatchViewModel
     {
         public string PageTitle { get; set; }
-        public List<AspNetUser> Pairing { get; set; }
+        public List<PairingCards> Pairing { get; set; }
     }
 }

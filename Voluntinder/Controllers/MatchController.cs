@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -30,57 +31,71 @@ namespace Voluntinder.Controllers
 
             if (user.IsCharity == false)
             {
+                var skill_list = DbContext.skills_list.Where(x => x.UserId == user.Id).ToList();
+                var skills = DbContext.Skills;
+                var userSkills = new List<Skill>();
+
+                foreach (var skill in skills)
+                {
+                    if (skill_list.Any(y => y.SkillId == skill.Id))
+                    {
+                        userSkills.Add(skill);
+                    }
+                }
+
                 model.PageTitle = "Find a charity";
                 var charities = DbContext.AspNetUsers.Where(x => x.IsCharity == true).ToList();
                 var pairings = DbContext.Pairings.Where(y => y.UserId == user.Id);
                 foreach (var pair in charities)
                 {
-                    foreach (var pairing in pairings)
+                    if (!pairings.Any(x => x.PairedUser == pair.Id))
                     {
-                        if (pairing.PairedUser != pair.Id)
+                        matches.Add(new PairingCards
                         {
-                            matches.Add(new PairingCards
-                            {
-                                Name = pair.Name,
-                                Description = null,
+                            Name = pair.Name,
+                            Description = pair.Description,
+                            ImageUrl = pair.ImageUrl,
+                            Skills = userSkills,
+                            UserId = pair.Id
 
-                            });
-                        }
+                        });
                     }
                 }
-
-                model = BuildModel(charities);
-
             }
             else
             {
                 model.PageTitle = "Find a volunteer";
-                var users = DbContext.AspNetUsers.Where(x => string.IsNullOrEmpty(x.Name)).ToList();
+                var users = DbContext.AspNetUsers.Where(x => x.IsCharity == false).ToList();
+                var pairings = DbContext.Pairings.Where(y => y.UserId == user.Id);
+                foreach (var pair in users)
+                {
+                    var skill_list = DbContext.skills_list.Where(x => x.UserId == user.Id).ToList();
+                    var skills = DbContext.Skills;
+                    var userSkills = new List<Skill>();
 
-                model = BuildModel(users);
+                    foreach (var skill in skills)
+                    {
+                        if (skill_list.Any(y => y.SkillId == skill.Id))
+                        {
+                            userSkills.Add(skill);
+                        }
+                    }
+                    if (!pairings.Any(x => x.PairedUser == pair.Id))
+                        matches.Add(new PairingCards
+                        {
+                            Name = pair.Name,
+                            Description = pair.Description,
+                            ImageUrl = pair.ImageUrl,
+                            Skills = userSkills,
+                            UserId = pair.Id
+
+                        });
+                }
             }
 
+            model.Pairing = matches;
             return View(model);
+
         }
-
-        public MatchViewModel BuildModel(IEnumerable<AspNetUser> users)
-        {
-            var model = new MatchViewModel();
-
-            //    foreach (var volunteer in users)
-            //    {
-            //        var skills = DbContext.skills_list.Where(x => x.UserId == volunteer.Id);
-            //        var volunteerModel = new User { Email = volunteer.Email };
-            //        foreach (var skill in skills)
-            //        {
-            //            volunteerModel.Skills.Add(skill.Skill.Name);
-            //        }
-            //        model.Users.Add(volunteerModel);
-            //    }
-
-            return model;
-            //}
-        }
-
     }
 }
