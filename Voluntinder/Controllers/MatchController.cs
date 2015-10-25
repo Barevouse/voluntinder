@@ -48,8 +48,6 @@ namespace Voluntinder.Controllers
 
             //}
 
-
-
             if (!user.IsCharity.Value)
             {
                 var yourSkills = DbContext.skills_list.Where(x => x.UserId == user.Id).ToList();
@@ -70,7 +68,7 @@ namespace Voluntinder.Controllers
                 foreach (var pair in charities)
                 {
                     var theirSkills = DbContext.skills_list.Where(x => x.UserId == pair.Id);
-                    if (!pairings.Any(x => x.PairedUser == pair.Id && theirSkills.Intersect(yourSkills).Any()))
+                    if (!pairings.Any(x => x.PairedUser == pair.Id && theirSkills.Select(y=>y.SkillId).Intersect(yourSkills.Select(c=>c.SkillId)).Any()))
                     {
                         matches.Add(new ProfileViewModel
                         {
