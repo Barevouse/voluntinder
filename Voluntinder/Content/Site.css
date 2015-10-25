@@ -109,3 +109,11 @@ textarea {
 .profile.current, #done.current {
     display: block;
 }
+
+.profile .more {
+    display: none;
+}
+
+.profile .more.expanded {
+    display: block;
+}

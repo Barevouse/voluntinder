@@ -4,13 +4,12 @@
 }
 
 <div id="profiles" class="row">
-    @for (var index = 0; index < Model.Pairing.Count; index++)
+    @foreach (var user in Model.Pairing)
     {
-        var user = Model.Pairing[index];
-        <div id="user-@index" class="profile col-md-12" data-user-id="@user.UserId">
+        <div class="profile col-md-12" data-user-id="@user.UserId">
             <img src="@user.ImageUrl" alt="@user.Name" width="400" height="400" />
             <h2>@user.Name</h2>
-            <h3>@user.UserName</h3>
+            <h3>@@@(user.UserName)</h3>
             <ul>
                 @foreach (var skill in user.Skills)
                 {
@@ -43,6 +42,10 @@
         var currentIndex = 0;
         $(profiles[currentIndex]).addClass('current');
 
+        function showHideMore() {
+            $(profiles[currentIndex]).find('.more').toggleClass("expanded");
+        }
+
         function acceptProfile() {
             moveProfile('accept');
         }
@@ -63,6 +66,7 @@
 
         $(profiles).swipeleft(rejectProfile);
         $(profiles).swiperight(acceptProfile);
+        $(profiles).click(showHideMore);
 
         iscroll = new iScroll('profiles', { hScrollbar: false, vScrollbar: false });
     </script>
