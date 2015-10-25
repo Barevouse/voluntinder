@@ -382,7 +382,9 @@ namespace Voluntinder.Controllers
                     Description = profile.Description,
                     Location = profile.Location,
                     ImageUrl = profile.ProfileImageUrlFullSize,
-                    IsCharity = model.IsCharity
+                    IsCharity = model.IsCharity,
+                    Longitude = model.Longitude,
+                    Latitude = model.Latitude
                 };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)

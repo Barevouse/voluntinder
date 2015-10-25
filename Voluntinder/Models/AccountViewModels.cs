@@ -7,6 +7,9 @@ namespace Voluntinder.Models
     {
         [Display(Name = "Are you a charity")]
         public bool IsCharity { get; set; }
+
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 
     public class ExternalLoginListViewModel
