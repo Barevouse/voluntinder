@@ -271,7 +271,6 @@ textarea {
 }
 
 .profile .actions {
-    overflow: hidden;
     height: 75px;
     text-align: center;
     vertical-align: middle;
@@ -295,19 +294,20 @@ textarea {
     color: #FF7854;
     padding: 0;
     font-size: 50px;
+    padding: 4px 0 0 0;
 }
 
 .profile .actions a.accept {
     color: #62DD9C;
     font-size: 40px;
-    padding: 7px 6px 3px 6px;
+    padding: 10px 6px 3px 6px;
 }
 
 .profile .actions a.info {
     color: #298EF6;
     border-width: 5px;
     font-size: 24px;
-    padding: 1px;
+    padding: 5px 1px 0;
 }
 
 .tweets {
