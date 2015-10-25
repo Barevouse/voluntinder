@@ -348,6 +348,7 @@
     <Content Include="Views\Shared\_Profile.cshtml" />
     <Content Include="Views\Match\Index.cshtml" />
     <Content Include="Views\Shared\_Tweets.cshtml" />
+    <Content Include="Views\Matches\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

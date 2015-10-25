@@ -23,10 +23,11 @@ namespace Voluntinder.Controllers
         // GET: Matches
         public ActionResult Index()
         {
-            var user = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
+            var user = Dbcontext.AspNetUsers.Find(userId);
             var model = new MyMatchesModel();
-            var allMyPairing = Dbcontext.Pairings.Where(x => x.UserId == user).ToList();
-            var myPairing = Dbcontext.Pairings.Where(x => x.PairedUser == user && x.Paired).ToList();
+            var allMyPairing = Dbcontext.Pairings.Where(x => x.UserId == userId).ToList();
+            var myPairing = Dbcontext.Pairings.Where(x => x.PairedUser == userId && x.Paired).ToList();
             var matches = new List<MatchesShortProfile>();
 
             foreach (var pairing in allMyPairing)
@@ -38,7 +39,8 @@ namespace Voluntinder.Controllers
                             Name = pairing.AspNetUser.Name,
                             MatchedOn = pairing.MatchedOn.Value,
                             ProfileImage = pairing.AspNetUser.ImageUrl,
-                            ProfileLink = "/profile?profileId=" + pairing.PairedUser
+                            ProfileLink = "/profile?profileId=" + pairing.PairedUser,
+                            Tweet = "https://twitter.com/intent/tweet?text=Looking%forward%to%working%together%@" + pairing.AspNetUser.UserName + "%@"+user.UserName + "%#Voluntinder"
                         });
                     }
                 }
