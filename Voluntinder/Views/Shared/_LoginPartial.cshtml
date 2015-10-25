@@ -29,6 +29,10 @@
             {
                 <li>@Html.ActionLink("Find", "Index", "Match")</li>
             }
+            @if (!ViewContext.RouteData.Values["controller"].ToString().ToLower().Equals("matches"))
+            {
+                <li>@Html.ActionLink("Matches", "Index", "Matches")</li>
+            }
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
         </ul>
     }
