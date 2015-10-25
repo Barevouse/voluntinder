@@ -22,7 +22,7 @@
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Profile", routeValues: new { profileId = id }, htmlAttributes: new { title = "View Profile" })
             </li>
             <li class="visible-xs">
-                @Html.ActionLink(User.Identity.GetUserName(), "Index", "Profile", routeValues: null, htmlAttributes: new { title = "View Profile" })
+                @Html.ActionLink(User.Identity.GetUserName(), "Index", "Profile", routeValues: new { profileId = id }, htmlAttributes: new { title = "View Profile" })
             </li>
             @if (!ViewContext.RouteData.Values["controller"].ToString().ToLower().Equals("skills"))
             {
