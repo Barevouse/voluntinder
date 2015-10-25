@@ -259,7 +259,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MatchViewModel.cs" />
-    <Compile Include="Models\PairingCards.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\SkillModels.cs" />
     <Compile Include="Models\SkillsWithUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -342,6 +342,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Skills\Index.cshtml" />
     <Content Include="Views\Match\Index.cshtml" />
+    <Content Include="Views\Shared\_Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

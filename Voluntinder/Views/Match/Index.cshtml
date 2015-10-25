@@ -1,13 +1,12 @@
-﻿@using VoluntinderDb
-@model Voluntinder.Models.MatchViewModel 
+﻿@model Voluntinder.Models.MatchViewModel 
 @{
     ViewBag.Title = Model.PageTitle;
 }
 
 <div id="profiles" class="row">
-    @for (var index = 0; index < Model.Pairing.Count; index++)
+    @for (var index = 0; index < Model.Profile.Count; index++)
     {
-        var user = Model.Pairing[index];
+        var user = Model.Profile[index];
         <div class="profile" id="user-@index" class="col-md-12">
             <h2>@user.Name</h2>
             <ul>
