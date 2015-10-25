@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -105,7 +106,8 @@ namespace Voluntinder.Controllers
             {
                 UserId = userId,
                 PairedUser = pairId,
-                Paired = true
+                Paired = true,
+                MatchedOn = DateTime.Now
             });
 
             DbContext.SaveChanges();
@@ -118,7 +120,8 @@ namespace Voluntinder.Controllers
             {
                 UserId = userId,
                 PairedUser = pairId,
-                Paired = false
+                Paired = false,
+                MatchedOn = DateTime.Now
             });
 
             DbContext.SaveChanges();

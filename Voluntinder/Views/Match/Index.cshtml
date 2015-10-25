@@ -1,0 +1,81 @@
+﻿@model Voluntinder.Models.MatchViewModel 
+@{
+    ViewBag.Title = Model.PageTitle;
+}
+
+<div id="profiles" class="row">
+    @foreach (var user in Model.Profile)
+    {
+        <div class="profile col-md-12" data-user-id="@user.UserId">
+            <img src="@user.ImageUrl" alt="@user.Name" width="400" height="400" />
+            <h2>@user.Name</h2>
+            <h3>@@@(user.UserName)</h3>
+            <ul>
+                @foreach (var skill in user.Skills)
+                {
+                    <li>@skill.Name</li>
+                }
+            </ul>
+            <div class="more">
+                <p>@user.Description</p>
+            </div>
+        </div>
+    }
+    <div id="done" class="col-md-12">
+        <h4>Done! Update your skills or try again later for more matches</h4>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).on("mobileinit", function() {
+            $.mobile.ajaxEnabled = false;
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/jquery.mobile")
+    @Scripts.Render("~/bundles/iscroll")
+
+    <script type="text/javascript">
+        var profiles = $('.profile');
+        var currentIndex = 0;
+        $(profiles[currentIndex]).addClass('current');
+
+        function showHideMore() {
+            $(profiles[currentIndex]).find('.more').toggleClass("expanded");
+        }
+
+        function acceptProfile() {
+            moveProfile('accept');
+        }
+
+        function rejectProfile() {
+            moveProfile('reject');
+        }
+
+        function moveProfile(classToAdd) {
+            $(profiles[currentIndex]).addClass(classToAdd).toggleClass('current');
+            $(profiles[currentIndex + 1]).toggleClass('current');
+
+            $.ajax({
+                type: 'POST',
+                url: "/Match/" + classToAdd,
+                data: { 'profileId': $(profiles[currentIndex]).data('user-id') },
+                dataType: JSON
+            });
+
+            currentIndex = currentIndex + 1;
+            if (currentIndex == profiles.length) {
+                $('#done').addClass('current');
+
+            }
+        }
+
+        $(profiles).swipeleft(rejectProfile);
+        $(profiles).swiperight(acceptProfile);
+        $(profiles).click(showHideMore);
+
+        iscroll = new iScroll('profiles', { hScrollbar: false, vScrollbar: false });
+    </script>
+}
